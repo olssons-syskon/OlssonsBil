@@ -3,7 +3,12 @@ let mongoose= require('mongoose');
 let Schema = mongoose.Schema;
 
 let carsSchema = new Schema({
-    text: String
+    name: String,
+    model: String,
+    color: String,
+    price: Number,
+    bookable: Boolean,
+    booked: Boolean
 });
 
 let Cars = mongoose.model('cars', carsSchema);
