@@ -1,4 +1,5 @@
 <template>
+
   <article class="add-cars">
     <h3>Name:</h3>
     <input type="text" v-model="car.name" >
@@ -9,7 +10,6 @@
     <h3>Price:</h3>
     <input type="text" v-model.number="car.price" >
     <button @click="createCar">Add</button>
-    <section v-for="(car, index) in cars" :key="index">{{ car.name }} <br> {{ car.model }} <br> {{ car.price }}</section>
   </article>
 </template>
 
@@ -40,11 +40,10 @@ export default {
     }
   },
   beforeMount() {
-    // this.$store.getters.getCars
-    this.$store.dispatch('retriveCars')
-  },
-  props: {}
-};
+    this.$store.dispatch('retrieveCars')
+  }
+  };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
