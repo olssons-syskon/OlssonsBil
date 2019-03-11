@@ -15,7 +15,8 @@
 export default {
   name: 'app',
   beforeMount() {
-    this.$store.dispatch('retriveCars')
+    this.$store.dispatch('retrieveBookings')
+    this.$store.dispatch('retrieveCars')
   }
 }
 

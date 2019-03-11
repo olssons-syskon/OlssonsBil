@@ -36,11 +36,9 @@ export default {
     },
     searchCars(from, to) {
       if(from == '' || to == '') {
-        // om man inte har valt datum så visas error-meddelande
         this.noDate = true;
       }
       else {
-        // ändra värden i store så choosecar-componenten når den datan
         this.$store.commit('changeStart', from)
         this.$store.commit('changeEnd', to)
         this.$router.push(`/choose-car`)
@@ -53,13 +51,9 @@ export default {
 
 <style lang="scss">
 
+@import '../scss/main.scss';
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-%center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 :root {
   background: Azure;

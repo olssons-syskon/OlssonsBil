@@ -1,5 +1,9 @@
 <template>
   <section id="car">
+
+    <h3>{{ car.car }}</h3>
+    <p>{{ car.booker }}</p>
+
     <h3>{{ car.name }}</h3>
     <p>{{ car.model }}</p>
     <h4>{{ car.price }}</h4>
