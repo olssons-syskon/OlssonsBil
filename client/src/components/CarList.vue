@@ -45,7 +45,7 @@ export default {
     };
   },
   beforeMount() {
-    this.$store.dispatch("retriveCars");
+    this.$store.dispatch("retrieveCars");
   },
 
   computed: {
