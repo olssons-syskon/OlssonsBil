@@ -8,8 +8,8 @@ export default new Vuex.Store({
   state: {
     bookings: [],
     cars: [],
-    bookers: ['Dean Winchester', 'Christian Bale']
-
+    startDate: '',
+    endDate: ''
   },
   mutations: {
     setBookings(state, bookings) {
@@ -17,6 +17,12 @@ export default new Vuex.Store({
     },
     setCars(state, cars) {
       state.cars = cars
+    },
+    changeStart(state, from) {
+      state.startDate = from;
+    },
+    changeEnd(state, to) {
+      state.endDate = to;
     }
   },
   actions: {
@@ -31,7 +37,7 @@ export default new Vuex.Store({
       let bookings = await axios.get('http://localhost:3000/booking');
       ctx.commit('setBookings', bookings.data);
     },
-    async retriveCars(ctx) {
+    async retrieveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
       ctx.commit('setCars', cars.data);
     },

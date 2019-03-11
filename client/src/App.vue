@@ -10,6 +10,18 @@
   </div>
 </template>
 
+<script>
+
+export default {
+  name: 'app',
+  beforeMount() {
+    this.$store.dispatch('retrieveBookings')
+    this.$store.dispatch('retrieveCars')
+  }
+}
+
+</script>
+
 <style>
 body {
   overflow: scroll;
