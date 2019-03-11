@@ -27,11 +27,11 @@ export default new Vuex.Store({
   },
   actions: {
     async createCar(ctx, car) {
-      let c = await axios.post('http://localhost:3000/cars', car)
+      await axios.post('http://localhost:3000/cars', car)
     },
     async createBooking(ctx, booking) {
-      let book = await axios.post('http://localhost:3000/booking/', booking);
-      localStorage.setItem('booking', booking)
+      await axios.post('http://localhost:3000/booking/', booking);
+      // localStorage.setItem('booking'+ctx.state.bookings, JSON.stringify(booking))
     },
     async retrieveBookings(ctx) {
       let bookings = await axios.get('http://localhost:3000/booking');
@@ -40,6 +40,10 @@ export default new Vuex.Store({
     async retrieveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
       ctx.commit('setCars', cars.data);
+    },
+    async cancelBooking(ctx, id) {
+      console.log(id)
+      await axios.delete('http://localhost:3000/booking/', id);
     }
   },
   getters: {

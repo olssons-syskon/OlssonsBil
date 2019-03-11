@@ -31,7 +31,7 @@ export default {
   methods: {
     createCar() {
       this.$store.dispatch('createCar', this.car);
-      this.$store.dispatch('retriveCars')
+      this.$store.dispatch('retrieveCars')
     }
   },
   computed: {
