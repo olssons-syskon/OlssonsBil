@@ -7,7 +7,25 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bookings: [],
-    cars: []
+    cars: [{
+      name: "Volvo",
+      model: "XC60",
+      color: "red",
+      price: 300,
+      year: 2018,
+      bookable: true,
+      booked: false
+    },
+  {  name: "Toyota",
+  model: "Camry",
+  color: "black",
+  price: 200,
+  year: 2017,
+  bookable: true,
+  booked: false
+
+  }]
+
   },
   mutations: {
     setBookings(state, bookings) {
@@ -29,7 +47,7 @@ export default new Vuex.Store({
       let bookings = await axios.get('http://localhost:3000/booking');
       ctx.commit('setBookings', bookings);
     },
-    async retrieveCars(ctx) {
+    async retriveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
       ctx.commit('setCars', cars.data);
     }
