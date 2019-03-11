@@ -40,7 +40,8 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.dispatch('retrieveCars')
+    // this.$store.getters.getCars
+    this.$store.dispatch('retriveCars')
   },
   props: {}
 };

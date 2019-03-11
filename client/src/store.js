@@ -29,7 +29,7 @@ export default new Vuex.Store({
       let bookings = await axios.get('http://localhost:3000/booking');
       ctx.commit('setBookings', bookings);
     },
-    async retrieveCars(ctx) {
+    async retriveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
       ctx.commit('setCars', cars.data);
     }
