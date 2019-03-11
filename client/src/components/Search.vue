@@ -4,7 +4,7 @@
     <h2>When???</h2>
     <div class="calendars">
       <date-pick v-model="startDate"></date-pick>
-      <h3>till</h3>
+      <h2>till</h2>
       <date-pick v-model="endDate"></date-pick>
     </div>
   </article>
@@ -14,6 +14,7 @@
 
 import DatePick from 'vue-date-pick';
 import 'vue-date-pick/dist/vueDatePick.css';
+
 
 export default {
   name: 'search',
@@ -27,8 +28,6 @@ export default {
     }
   }
 }
-
-// https://dbrekalo.github.io/vue-date-pick/getting-started.html
 
 </script>
 
@@ -72,7 +71,6 @@ export default {
         display: none;
       }
     }
-
   }
 }
 

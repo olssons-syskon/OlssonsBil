@@ -1,17 +1,20 @@
 <template>
   <main id="start">
     <search />
+    <chooseCar />
   </main>
 </template>
 
 <script>
 
-import search from '../components/Search.vue';
+import Search from '../components/Search.vue';
+import ChooseCar from '../components/ChooseCar.vue';
 
 export default {
   name: 'start',
   components: {
-    search
+    Search,
+    ChooseCar
   }
 }
 </script>

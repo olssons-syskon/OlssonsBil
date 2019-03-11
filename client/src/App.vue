@@ -10,6 +10,17 @@
   </div>
 </template>
 
+<script>
+
+export default {
+  name: 'app',
+  beforeMount() {
+    this.$store.dispatch('retrieveCars')
+  }
+}
+
+</script>
+
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
