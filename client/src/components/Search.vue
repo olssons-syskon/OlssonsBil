@@ -1,13 +1,13 @@
 <template>
   <article class="search">
     <h1>Olssons biluthyrning</h1>
-    <h2>When???</h2>
+    <h2>When?</h2>
     <div class="calendars" @click="hideError">
       <date-pick v-model="startDate"></date-pick>
-      <h2>till</h2>
+      <h2>to</h2>
       <date-pick v-model="endDate"></date-pick>
     </div>
-    <a href="#" class="btn" @click="searchCars(startDate, endDate)">Sök ledig bil</a>
+    <a href="#" class="btn" @click="searchCars(startDate, endDate)">Find me a car!</a>
     <p class="errorMsg" v-show="noDate">I need a date. Please date me.</p>
   </article>
 </template>
@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      startDate: '2019-03-11',
+      startDate: '2019-03-24',
       endDate: '2019-04-05',
       noDate: false
     }
@@ -53,11 +53,6 @@ export default {
 
 @import '../scss/main.scss';
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-
-
-:root {
-  background: Azure;
-}
 
 .search {
   h1 {
@@ -89,7 +84,7 @@ export default {
   .btn {
     text-decoration: none;
     display: inline-block;
-    background: LightSteelBlue;
+    background: Silver;
     color: White;
     padding: 1rem;
     margin: 1rem;

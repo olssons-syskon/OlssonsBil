@@ -21,4 +21,10 @@ export default {
 
 <style lang="scss">
 
+@import '../scss/main.scss';
+
+:root {
+  background: $background;
+}
+
 </style>

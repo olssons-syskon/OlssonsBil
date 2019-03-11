@@ -18,8 +18,16 @@ export default {
   components: {
     Car
   },
+  data() {
+    return {
+      shownCars: []
+    }
+  },
   computed: {
     availableCars() {
+      // nollställ listan över tillgängliga bilar
+      this.shownCars = [];
+
       // datumet man söker på
       let searchStartDate = this.$store.state.startDate;
       let sYear = searchStartDate.slice(0,4);
@@ -28,17 +36,23 @@ export default {
       // console.log(sYear,sMonth,sDay)
 
       // kollar om det sökta bokningsdatumet är "högre" än det bilen är bokad till
-      return this.$store.getters.getBookings.filter((booking) => {
+      let avaliable = this.$store.getters.getBookings.filter((booking) => {
         // console.log(booking.toDate.slice(5,7))
         return booking.toDate.slice(0,4) <= sYear && booking.toDate.slice(5,7) <= sMonth && booking.toDate.slice(8,10) < sDay;
       })
 
+      ///
+      for (var i = 0; i < avaliable.length; i++) {
+        this.shownCars.push(avaliable[i].car)
+      }
+      ///
 
-      // return this.$store.getters.getCars.filter(car => car.booked == true);
+      return avaliable;
     },
     bookedCars() {
+      return this.$store.getters.getCars;
       // alla bilar som är bokade någon gång ever
-      return this.$store.getters.getCars.filter(car => car.booked == true);
+      // return this.$store.getters.getCars.filter(car => car.booked == true);
     }
   }
 }
@@ -52,8 +66,8 @@ export default {
   display: flex;
   justify-content: space-between;
   margin: auto;
+  max-width: 90vw;
   width: 450px;
-  border: 3px dotted Blue;
 
   .available-cars {
   }

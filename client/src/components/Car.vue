@@ -20,11 +20,13 @@ export default {
 <style lang="scss">
 
 #car {
-  background: WhiteSmoke;
   width: 200px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background: WhiteSmoke;
+  box-sizing: border-box;
+  padding: 1rem;
 
   h3 {
     margin: .25rem 0;
