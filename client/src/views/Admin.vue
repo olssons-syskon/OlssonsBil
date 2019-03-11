@@ -1,12 +1,16 @@
 <template>
   <main id="admin">
-
+    <AdminCreate />
   </main>
 </template>
 
 <script>
+import AdminCreate from '../components/AdminCreate'
 export default {
-  name: 'admin'
+  name: 'admin',
+  components: {
+    AdminCreate
+  }
 }
 </script>
 
