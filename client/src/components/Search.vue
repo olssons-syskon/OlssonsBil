@@ -2,11 +2,13 @@
   <article class="search">
     <h1>Olssons biluthyrning</h1>
     <h2>When???</h2>
-    <div class="calendars">
+    <div class="calendars" @click="hideError">
       <date-pick v-model="startDate"></date-pick>
       <h2>till</h2>
       <date-pick v-model="endDate"></date-pick>
     </div>
+    <a href="#" class="btn" @click="searchCars(startDate, endDate)">Sök ledig bil</a>
+    <p class="errorMsg" v-show="noDate">I need a date. Please date me.</p>
   </article>
 </template>
 
@@ -23,8 +25,26 @@ export default {
   },
   data() {
     return {
-      startDate: '2019-01-01',
-      endDate: '2019-04-30'
+      startDate: '2019-03-11',
+      endDate: '2019-04-05',
+      noDate: false
+    }
+  },
+  methods: {
+    hideError() {
+      this.noDate = false;
+    },
+    searchCars(from, to) {
+      if(from == '' || to == '') {
+        // om man inte har valt datum så visas error-meddelande
+        this.noDate = true;
+      }
+      else {
+        // ändra värden i store så choosecar-componenten når den datan
+        this.$store.commit('changeStart', from)
+        this.$store.commit('changeEnd', to)
+        this.$router.push(`/choose-car`)
+      }
     }
   }
 }
@@ -71,6 +91,19 @@ export default {
         display: none;
       }
     }
+  }
+  .btn {
+    text-decoration: none;
+    display: inline-block;
+    background: LightSteelBlue;
+    color: White;
+    padding: 1rem;
+    margin: 1rem;
+  }
+  .errorMsg {
+    color: Crimson;
+    font-style: italic;
+    margin: 0;
   }
 }
 

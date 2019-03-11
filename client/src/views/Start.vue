@@ -1,7 +1,7 @@
 <template>
   <main id="start">
     <search />
-    <chooseCar />
+    <router-view />
   </main>
 </template>
 

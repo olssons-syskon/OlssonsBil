@@ -40,11 +40,9 @@ export default {
   border: 3px dotted Blue;
 
   .available-cars {
-    border: 2px dashed Green;
   }
 
   .booked-cars {
-    border: 2px solid Crimson;
   }
 }
 
