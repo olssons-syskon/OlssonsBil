@@ -27,6 +27,7 @@ app.route('/cars')
 app.route('/booking')
 .get(booking.get)
 .post(booking.post)
+.delete(booking.delete)
 
 app.listen(3000, () => {
     console.info("Ah, nice! Port 3000! That's the best one!")

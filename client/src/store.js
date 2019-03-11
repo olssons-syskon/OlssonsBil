@@ -7,24 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bookings: [],
-    cars: [{
-      name: "Volvo",
-      model: "XC60",
-      color: "red",
-      price: 300,
-      year: 2018,
-      bookable: true,
-      booked: false
-    },
-  {  name: "Toyota",
-  model: "Camry",
-  color: "black",
-  price: 200,
-  year: 2017,
-  bookable: true,
-  booked: false
-
-  }]
+    cars: [],
+    bookers: ['Dean Winchester', 'Christian Bale']
 
   },
   mutations: {
@@ -37,19 +21,23 @@ export default new Vuex.Store({
   },
   actions: {
     async createCar(ctx, car) {
-      let c = await axios.post('http://localhost:3000/cars', car)
+      await axios.post('http://localhost:3000/cars', car)
     },
     async createBooking(ctx, booking) {
-      let book = await axios.post('http://localhost:3000/booking/', booking);
-      localStorage.setItem('booking', booking)
+      await axios.post('http://localhost:3000/booking/', booking);
+      // localStorage.setItem('booking'+ctx.state.bookings, JSON.stringify(booking))
     },
     async retrieveBookings(ctx) {
       let bookings = await axios.get('http://localhost:3000/booking');
-      ctx.commit('setBookings', bookings);
+      ctx.commit('setBookings', bookings.data);
     },
     async retriveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
       ctx.commit('setCars', cars.data);
+    },
+    async cancelBooking(ctx, id) {
+      console.log(id)
+      await axios.delete('http://localhost:3000/booking/', id);
     }
   },
   getters: {
