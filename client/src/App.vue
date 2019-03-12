@@ -24,11 +24,8 @@ export default {
 
 <style>
 
-@import '../scss/main.scss';
+@import './scss/main.scss';
 
-body {
-  overflow: scroll;
-}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

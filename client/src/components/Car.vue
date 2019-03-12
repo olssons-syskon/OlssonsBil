@@ -26,7 +26,8 @@ export default {
   align-items: flex-start;
   background: WhiteSmoke;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: .5rem;
+  margin-bottom: .25rem;
 
   h3 {
     margin: .25rem 0;

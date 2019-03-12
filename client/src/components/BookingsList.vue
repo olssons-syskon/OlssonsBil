@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="css" scoped>
 .bookings-list {
   background: #000;
 }
@@ -54,7 +54,7 @@ h3 {
   margin: 0;
 }
 
-div {
+.bookings-list div {
   color: #39ff14;
 }
 

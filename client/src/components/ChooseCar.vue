@@ -18,15 +18,8 @@ export default {
   components: {
     Car
   },
-  data() {
-    return {
-      shownCars: []
-    }
-  },
   computed: {
     availableCars() {
-      // nollställ listan över tillgängliga bilar
-      this.shownCars = [];
 
       // datumet man söker på
       let searchStartDate = this.$store.state.startDate;
@@ -35,19 +28,12 @@ export default {
       let sDay = searchStartDate.slice(8,10);
       // console.log(sYear,sMonth,sDay)
 
+      console.log(this.$store.getters.getCars)
+
       // kollar om det sökta bokningsdatumet är "högre" än det bilen är bokad till
-      let avaliable = this.$store.getters.getBookings.filter((booking) => {
-        // console.log(booking.toDate.slice(5,7))
-        return booking.toDate.slice(0,4) <= sYear && booking.toDate.slice(5,7) <= sMonth && booking.toDate.slice(8,10) < sDay;
+      return this.$store.getters.getCars.filter((car) => {
+        return car.booked.to.slice(0,4) <= sYear && car.booked.to.slice(5,7) <= sMonth && car.booked.to.slice(8,10) < sDay;
       })
-
-      ///
-      for (var i = 0; i < avaliable.length; i++) {
-        this.shownCars.push(avaliable[i].car)
-      }
-      ///
-
-      return avaliable;
     },
     bookedCars() {
       return this.$store.getters.getCars;
