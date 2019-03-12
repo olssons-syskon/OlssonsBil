@@ -49,8 +49,13 @@ export default new Vuex.Store({
     },
     async retriveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
-      ctx.commit('setCars', cars.data);
-    }
+      ctx.commit('setCars', cars.data);    
+    },
+    async deleteCar(ctx, id){
+    
+       await axios.delete(`http://localhost:3000/cars/${id}`)
+      }
+
   },
   getters: {
     getBookings(state) {

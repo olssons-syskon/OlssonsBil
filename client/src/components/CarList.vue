@@ -20,6 +20,9 @@
             <td>{{ car.year }}</td>
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
+            <button @click="deleteCar(car._id)">Delete</button>
+            <button @click="editCar">Edit</button>
+
             <!-- <td>{{ car.bookable }}</td>
             <td>{{ car.booked }}</td>-->
           </tr>
@@ -52,6 +55,20 @@ export default {
     cars() {
       return this.$store.getters.getCars;
     }
+  },
+  methods:{
+    deleteCar(id){
+      //console.log(id)
+      this.$store.dispatch('deleteCar', id);
+      this.$store.dispatch("retriveCars");
+      this.$router.push('/Admin')
+
+
+
+    },
+    editCar(){
+      this.$router.push('/EditCar')
+  }
   }
 };
 </script>

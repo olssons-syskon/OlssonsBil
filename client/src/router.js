@@ -24,6 +24,11 @@ export default new Router({
       path: '/bookings',
       name: 'bookings',
       component: () => import('./views/Bookings.vue')
-    }
+    },
+  {
+    path: '/cars/edit/:id',
+    name: 'editCar',
+    component: () => import('./components/EditCar.vue')
+  }
   ]
 })
