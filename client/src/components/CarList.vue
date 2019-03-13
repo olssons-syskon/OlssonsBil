@@ -19,8 +19,8 @@
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
             <button @click="deleteCar(car._id)">Delete</button>
-            <button @click="editCar(car._id)">Edit</button>
-            <router-link to="/admin/edit">Confirm</router-link>
+            <!-- <button @click="editCar(car._id)">Edit</button> -->
+            <router-link to="/admin/edit">Edit</router-link>
             <!-- <td>{{ car.bookable }}</td>
             <td>{{ car.booked }}</td>-->
           </tr>
@@ -59,12 +59,12 @@ export default {
     deleteCar(id){
       //console.log(id)
       this.$store.dispatch('deleteCar', id);
-      this.$store.dispatch("retriveCars");
+      this.$store.dispatch("retrieveCars");
       this.$router.push('/Admin')
     },
    editCar(id){
 
-    //this.$router.push({name:'confirm'})
+    //this.$router.push({name:'admin'})
           <router-link to="/confirm">Admin</router-link>
 
   }

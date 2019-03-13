@@ -1,20 +1,20 @@
 <template>
-  <div class="posts">
+  <div class="edit">
     <h1>Update data about the car</h1>
     <div class="form">
       <div>
-        <input name="name" type="text" placeholder="Name" v-model="name">
+        <input name="name" type="text" placeholder="Name" v-model="car.name">
       </div>
       <div>
-        <input name="model" type="text" placeholder="Model" v-model="model">
+        <input name="model" type="text" placeholder="Model" v-model="car.model">
       </div>
       <div>
-        <input name="price" type="text" placeholder="Price" v-model="price">
+        <input name="price" type="text" placeholder="Price" v-model="car.price">
       </div>
       <div>
-        <input name="bookable" type="text" placeholder="If bookable" v-model="bookable">
+        <input name="bookable" type="text" placeholder="If bookable" v-model="car.bookable">
       </div>
-      <button class="app_post_btn" @click="editCar">DO IT!</button>
+      <button class="app_post_btn" @click="editCar(car._id)">DO IT!</button>
     </div>
   </div>
 </template>
@@ -22,6 +22,21 @@
 <script>
 
 export default {
+   data() {
+    return {
+      car: {
+        name: '',
+        model: '',
+        color: '',
+        price: '',
+        bookable: true
+     /*    booked: {
+          from: '2000-01-01',
+          to: '2000-01-01'
+        } */
+      }
+    };
+  },
   computed: {
     cars() {
       return this.$store.getters.getCars;
@@ -30,13 +45,16 @@ export default {
   methods: {
     editCar(id) {
       this.$store.dispatch("editCar", id);
-      this.$store.dispatch("retriveCars");
+      this.$store.dispatch("retrieveCars");
       this.$router.push("/Admin");
     }
   }
 };
 </script>
 <style type="text/css">
+h1 {
+  color:brown
+}
 .form input,
 .form textarea {
   width: 500px;
