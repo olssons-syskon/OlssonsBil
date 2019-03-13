@@ -37,6 +37,9 @@ export default {
       }
     };
   },
+  beforeCreated(){
+   // console.log(id)
+  },
   computed: {
     cars() {
       return this.$store.getters.getCars;
@@ -44,9 +47,11 @@ export default {
   },
   methods: {
     editCar(id) {
+      var id = this.$route.params.id;
+      console.log(id)
       this.$store.dispatch("editCar", id);
       this.$store.dispatch("retrieveCars");
-      this.$router.push("/Admin");
+      this.$router.push(`/admin`);
     }
   }
 };

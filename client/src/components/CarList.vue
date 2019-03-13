@@ -19,8 +19,8 @@
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
             <button @click="deleteCar(car._id)">Delete</button>
-            <!-- <button @click="editCar(car._id)">Edit</button> -->
-            <router-link to="/admin/edit">Edit</router-link>
+            <button @click="editCar(car._id)">Edit</button>
+            <!-- <router-link to="/admin/edit">Edit</router-link> -->
             <!-- <td>{{ car.bookable }}</td>
             <td>{{ car.booked }}</td>-->
           </tr>
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -55,46 +54,43 @@ export default {
       return this.$store.getters.getCars;
     }
   },
-  methods:{
-    deleteCar(id){
-      //console.log(id)
-      this.$store.dispatch('deleteCar', id);
+  methods: {
+    deleteCar(id) {
+      console.log(id);
+      this.$store.dispatch("deleteCar", id);
       this.$store.dispatch("retrieveCars");
-      this.$router.push('/Admin')
+      this.$router.push("/Admin");
     },
-   editCar(id){
-
-    //this.$router.push({name:'admin'})
-          <router-link to="/confirm">Admin</router-link>
-
+    editCar(id) {
+      console.log(id);
+      this.$router.push(`/edit/${id}`);
+      //<router-link to="/confirm">Admin</router-link>
+    }
   }
-  
-  }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container { align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    background: #000;
-    color:rgb(255, 0, 157);
-    padding: 1rem;
-  }
+.container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  color: rgb(255, 0, 157);
+  padding: 1rem;
+}
 
-thead tr{
-    font-weight: bold;
-  }
+thead tr {
+  font-weight: bold;
+}
 
 tbody td {
-   margin:10px;
-   padding: 10px;
-   color: wheat;
-   justify-self: start;
-   font-weight: bold;
-
-  }
-
+  margin: 10px;
+  padding: 10px;
+  color: wheat;
+  justify-self: start;
+  font-weight: bold;
+}
 </style>
