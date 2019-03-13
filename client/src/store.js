@@ -7,59 +7,54 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bookings: [],
-    cars: [{
-      name: "Volvo",
-      model: "XC60",
-      color: "red",
-      price: 300,
-      year: 2018,
-      bookable: true,
-      booked: false
-    },
-  {  name: "Toyota",
-  model: "Camry",
-  color: "black",
-  price: 200,
-  year: 2017,
-  bookable: true,
-  booked: false
-
-  }]
-
+    cars: [],
+    startDate: '',
+    endDate: '',
+    choosenCar: {}
   },
   mutations: {
     setBookings(state, bookings) {
-      state.bookings = bookings
+      state.bookings = bookings;
     },
     setCars(state, cars) {
-      state.cars = cars
+      state.cars = cars;
+    },
+    changeStart(state, from) {
+      state.startDate = from;
+    },
+    changeEnd(state, to) {
+      state.endDate = to;
+    },
+    selectCar(state, car) {
+      state.choosenCar = car;
     }
   },
   actions: {
     async createCar(ctx, car) {
-      let c = await axios.post('http://localhost:3000/cars', car)
+      await axios.post('http://localhost:3000/cars', car)
     },
     async createBooking(ctx, booking) {
-      let book = await axios.post('http://localhost:3000/booking/', booking);
-      localStorage.setItem('booking', booking)
+      await axios.post('http://localhost:3000/booking/', booking);
+      // localStorage.setItem('booking'+ctx.state.bookings, JSON.stringify(booking))
     },
     async retrieveBookings(ctx) {
       let bookings = await axios.get('http://localhost:3000/booking');
-      ctx.commit('setBookings', bookings);
+      ctx.commit('setBookings', bookings.data);
     },
-    async retriveCars(ctx) {
+    async retrieveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
       ctx.commit('setCars', cars.data);    
     },
     async deleteCar(ctx, id){
-    
-       await axios.delete(`http://localhost:3000/cars/${id}`)
-      },
-
+      await axios.delete(`http://localhost:3000/cars/${id}`)
+    },
     async editCar(ctx, id) {
-        await axios.put(`http://localhost:3000/cars/${id}`)
-      }
-
+      await axios.put(`http://localhost:3000/cars/${id}`)
+    },
+    async cancelBooking(ctx, id) {
+      console.log(id)
+      await axios.delete('http://localhost:3000/booking/', id);
+    }
   },
   getters: {
     getBookings(state) {

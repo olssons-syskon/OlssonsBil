@@ -24,14 +24,17 @@ export default {
         color: '',
         price: '',
         bookable: true,
-        booked: false
+        booked: {
+          from: '2000-01-01',
+          to: '2000-01-01'
+        }
       }
     };
   },
   methods: {
     createCar() {
       this.$store.dispatch('createCar', this.car);
-      this.$store.dispatch('retriveCars')
+      this.$store.dispatch('retrieveCars')
     }
   },
   computed: {
@@ -40,14 +43,14 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.dispatch('retriveCars')
+    this.$store.dispatch('retrieveCars')
   }
   };
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style land="css" scoped>
   .add-cars {
     align-items: center;
     justify-content: center;

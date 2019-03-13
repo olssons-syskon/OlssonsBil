@@ -45,10 +45,10 @@ export default {
       }
     };
   },
-  //beforeMount() {
-    mounted(){
-    this.$store.dispatch("retriveCars");
-  }, 
+
+  beforeMount() {
+    this.$store.dispatch("retrieveCars");
+  },
 
   computed: {
     cars() {

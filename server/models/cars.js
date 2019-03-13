@@ -8,7 +8,10 @@ let carsSchema = new Schema({
     color: String,
     price: Number,
     bookable: Boolean,
-    booked: Boolean
+    booked: {
+      from: Date,
+      to: Date
+    }
 });
 
 let Cars = mongoose.model('cars', carsSchema);

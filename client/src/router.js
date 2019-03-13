@@ -8,7 +8,14 @@ export default new Router({
     {
       path: '/',
       name: 'start',
-      component: () => import('./views/Start.vue')
+      component: () => import('./views/Start.vue'),
+      children: [
+        {
+          path: '/choose-car',
+          name: 'chooseCar',
+          component: () => import('./components/ChooseCar.vue')
+        }
+      ]
     },
     {
       path: '/confirm',

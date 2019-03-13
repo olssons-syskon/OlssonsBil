@@ -1,21 +1,28 @@
 <template>
   <main id="start">
     <search />
+    <router-view />
   </main>
 </template>
 
 <script>
 
-import search from '../components/Search.vue';
+import Search from '../components/Search.vue';
 
 export default {
   name: 'start',
   components: {
-    search
+    Search
   }
 }
 </script>
 
 <style lang="scss">
+
+@import '../scss/main.scss';
+
+:root {
+  background: $background;
+}
 
 </style>
