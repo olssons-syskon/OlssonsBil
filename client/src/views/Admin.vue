@@ -13,8 +13,7 @@ export default {
   name: 'admin',
   components: {
     AdminCreate,
-    CarList
-  }
+    CarList  }
 }
 </script>
 

@@ -31,6 +31,11 @@ export default new Router({
       path: '/bookings',
       name: 'bookings',
       component: () => import('./views/Bookings.vue')
-    }
+    },
+  {
+    path: '/admin/edit',
+    name: 'editcar',
+    component: () => import('./views/Edit.vue')
+  }
   ]
 })
