@@ -26,9 +26,9 @@ export default new Router({
       component: () => import('./views/Bookings.vue')
     },
   {
-    path: '/cars/edit/:id',
-    name: 'editCar',
-    component: () => import('./components/EditCar.vue')
+    path: '/admin/edit',
+    name: 'editcar',
+    component: () => import('./views/Edit.vue')
   }
   ]
 })

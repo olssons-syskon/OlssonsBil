@@ -6,7 +6,6 @@
           <tr>
             <td>Name</td>
             <td>Model</td>
-            <td>Year</td>
             <td>Color</td>
             <td>Price (kr/day)</td>
             <!--    <td>Bookable</td>
@@ -17,12 +16,11 @@
           <tr v-for="(car, index) in cars" :key="index">
             <td>{{ car.name }}</td>
             <td>{{ car.model }}</td>
-            <td>{{ car.year }}</td>
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
             <button @click="deleteCar(car._id)">Delete</button>
-            <button @click="editCar">Edit</button>
-
+            <button @click="editCar(car._id)">Edit</button>
+            <router-link to="/admin/edit">Confirm</router-link>
             <!-- <td>{{ car.bookable }}</td>
             <td>{{ car.booked }}</td>-->
           </tr>
@@ -33,6 +31,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -41,15 +40,15 @@ export default {
         model: "",
         color: "",
         price: "",
-        year: "",
         bookable: true,
         booked: false
       }
     };
   },
-  beforeMount() {
+  //beforeMount() {
+    mounted(){
     this.$store.dispatch("retriveCars");
-  },
+  }, 
 
   computed: {
     cars() {
@@ -62,15 +61,16 @@ export default {
       this.$store.dispatch('deleteCar', id);
       this.$store.dispatch("retriveCars");
       this.$router.push('/Admin')
-
-
-
     },
-    editCar(){
-      this.$router.push('/EditCar')
+   editCar(id){
+
+    //this.$router.push({name:'confirm'})
+          <router-link to="/confirm">Admin</router-link>
+
   }
+  
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

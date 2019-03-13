@@ -54,6 +54,10 @@ export default new Vuex.Store({
     async deleteCar(ctx, id){
     
        await axios.delete(`http://localhost:3000/cars/${id}`)
+      },
+
+    async editCar(ctx, id) {
+        await axios.put(`http://localhost:3000/cars/${id}`)
       }
 
   },
