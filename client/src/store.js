@@ -9,20 +9,24 @@ export default new Vuex.Store({
     bookings: [],
     cars: [],
     startDate: '',
-    endDate: ''
+    endDate: '',
+    choosenCar: {}
   },
   mutations: {
     setBookings(state, bookings) {
-      state.bookings = bookings
+      state.bookings = bookings;
     },
     setCars(state, cars) {
-      state.cars = cars
+      state.cars = cars;
     },
     changeStart(state, from) {
       state.startDate = from;
     },
     changeEnd(state, to) {
       state.endDate = to;
+    },
+    selectCar(state, car) {
+      state.choosenCar = car;
     }
   },
   actions: {

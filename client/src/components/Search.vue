@@ -66,7 +66,6 @@ export default {
     margin: auto;
 
     .vdpComponent {
-
       input {
         width: 5.5rem;
         padding: .8rem;
@@ -74,20 +73,12 @@ export default {
         font-weight: bold;
         font-size: 1rem;
       }
-
       .vdpClearInput {
         display: none;
       }
     }
   }
-  .btn {
-    text-decoration: none;
-    display: inline-block;
-    background: Silver;
-    color: White;
-    padding: 1rem;
-    margin: 1rem;
-  }
+  
   .errorMsg {
     color: Crimson;
     font-style: italic;
