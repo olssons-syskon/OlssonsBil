@@ -1,6 +1,6 @@
-let express = require('express');
-let mongoose = require('mongoose');
-let cors = require('cors');
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 const jsonwebtoken = require('jsonwebtoken');
 
 let PASSWORD = 'olssonsbil';
@@ -29,6 +29,7 @@ app.listen(3000, () => {
 });
 
 app.use((req, res, next) => {
+    console.log(req.headers)
    if(auth.verifyToken(req.headers.authorization)){
        next()
    } else {

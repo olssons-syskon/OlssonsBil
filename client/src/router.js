@@ -25,28 +25,24 @@ export default new Router({
     {
       path: '/admin',
       name: 'admin',
-      component: () => import('./views/Admin.vue')/* ,
-      children: [{
-        path: '/edit',
-        name: 'editCar',
-        component: () => import('./view/Edit.vue')
-      }
-    ] */},
+      component: () => import('./views/Admin.vue')
+  },
     {
       path: '/bookings',
       name: 'bookings',
       component: () => import('./views/Bookings.vue')
     },
+  
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: () => import('./views/Edit.vue')
+    },
+    
     {
       path: '/login',
       name: 'login',
       component: () => import('./views/Login.vue')
     }
   ]
-  {
-    path: '/edit/:id',
-    name: 'edit',
-    component: () => import('./views/Edit.vue')
-  }
-]
 })

@@ -6,7 +6,7 @@ module.exports.post = async (req, res) => {
     console.log('WGAJHJHKJAHKJ')
     let user = await User.findOne({ username: req.body.username });
 
-    let match = await bcrypt.compare(req.body.password);
+    let match = await bcrypt.compare(req.body.password, user.body.username);
 
     if(match) {
         const token = jwt.sign({ uid: user.uid}, process.env.SECRET);
@@ -30,6 +30,7 @@ module.exports.isAdmin = async authtoken => {
 
 module.exports.verifyToken = async token => {
     console.log(token);
+    console.log('22')
 
     try {
         await jwt.verify(token.substring(7), process.env.SECRET);

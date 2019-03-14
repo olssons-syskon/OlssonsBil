@@ -3,9 +3,10 @@
         <article>
             <section class="login-inputs">
                 <div>Username:</div>
-                <input type="text" name="" id="" class="login-input-username" v-model="username">
-                <input type="password" name="" id="" class="login-input-username" v-model="password">
-                <a href="#" class="btn" @click="login" :class="{ ready : validPassword && validUsername }">Login</a>
+                <input type="text" class="login-input-username" v-model="username">
+                <div>Password:</div>
+                <input type="password" class="login-input-password" v-model="password">
+                <a href="#" class="btn" @click="login">Login</a>
             </section>
         </article>
     </main>
@@ -16,10 +17,10 @@ export default {
     name: 'login',
     data() {
         return {
-            username: '',
-            password: '',
-            validUsername: true,
-            validPassword: true
+            username: 'hank',
+            password: 'hank',
+            validUsername: false,
+            validPassword: false
         }
     },
     methods: {
@@ -32,20 +33,16 @@ export default {
     },
     watch: {
         username(val) {
-            if(val.length > 4) {
-                console.log("Cheese user")
+            if(val.length > 3) {
                 this.validUsername = true;
             } else {
-                console.log("No cheese user")
                 this.validUsername = false;
             }
         },
         password(val) {
-            if(val.length > 4) {
-                console.log("Hat password")
+            if(val.length > 3) {
                 this.validPassword = true;
             } else {
-                console.log("No hat password")
                 this.validPassword = false;
             }
         }
