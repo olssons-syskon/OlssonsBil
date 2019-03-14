@@ -40,6 +40,10 @@ export default {
     createCar() {
       this.$store.dispatch('createCar', this.car);
       this.$store.dispatch('retrieveCars')
+      this.$store.dispatch("retrieveCars");
+      this.$router.push("/Admin");
+      this.$store.dispatch("retrieveCars");
+
     }
   },
   computed: {

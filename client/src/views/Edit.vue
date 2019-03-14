@@ -11,6 +11,9 @@ import EditCar from '../components/EditCar'
 export default {
   components: {
    EditCar
+  },
+    beforeMount() {
+    console.log("gfgfg"+this.$store.state.eChosenCar)
   }
 }
 </script>

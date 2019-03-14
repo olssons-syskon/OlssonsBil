@@ -24,13 +24,26 @@ module.exports.delete = async (req, res) => {
     } catch (err) {
         res.status(500).send(err.stack);
     }
-}  
+}
 
 
 //update one
-module.exports.put = async (req, res) => {
+module.exports.patch = async (req, res) => {
+    console.log(req.body)
     try {
-        res.status(200).send(await Cars.findOneAndUpdate({ _id: req.params.carId }, req.body, { new: true }));
+        res.status(200).send(await Cars.findOneAndUpdate({ _id: req.body._id }, {
+            name: req.body.name,
+            model: req.body.model,
+            price: req.body.price,
+            bookable: req.body.bookable,
+            booked:
+            {
+                from: req.body.booked.from,
+                to: req.body.booked.to
+            },
+            color: req.body.color
+        },
+            { new: true }));
     } catch (err) {
         res.status(500).send(err.stack)
     }
