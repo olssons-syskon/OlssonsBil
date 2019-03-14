@@ -17,7 +17,7 @@ let cars = require('./route/cars');
 let booking = require('./route/booking');
 let auth = require('./route/auth');
 let user = require('./route/users');
-let items = require('./route/items')
+let items = require('./route/adminItems')
 
 let app = express();
 
@@ -29,7 +29,6 @@ app.listen(3000, () => {
 });
 
 app.use((req, res, next) => {
-    console.log(req.headers)
    if(auth.verifyToken(req.headers.authorization)){
        next()
    } else {
@@ -40,10 +39,11 @@ app.use((req, res, next) => {
 app.route('/cars')
 .get(cars.get)
 .post(cars.post)
+.patch(cars.patch)
+
 
 app.route('/cars/:carId')
 .delete(cars.delete)
-.put(cars.put)
 
 app.route('/booking')
 .get(booking.get)
@@ -58,5 +58,5 @@ app.route('/auth')
 app.route('/users')
 .post(user.post)
 
-app.route('/items')
+app.route('/adminItems')
 .get(items.get)

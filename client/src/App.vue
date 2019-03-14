@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+    <div class="user">{{ user }}</div>
     <div id="nav">
       <router-link to="/">Start</router-link> |
       <router-link to="/confirm">Confirm</router-link> |
       <router-link to="/bookings">Bookings</router-link> |
       <router-link to="/admin">Admin</router-link>
     </div>
+    <button class="logout" v-show="this.$store.state.currentUser != ''" @click="logout">Logout</button>
     <router-view/>
   </div>
 </template>
@@ -18,6 +20,18 @@ export default {
   beforeMount() {
     this.$store.dispatch('retrieveBookings')
     this.$store.dispatch('retrieveCars')
+  },
+  computed: {
+    user(){
+      return this.$store.state.currentUser;
+    }
+  },
+  methods: {
+    logout() {
+      sessionStorage.removeItem('authentic')
+      this.$store.state.currentUser = '';
+      this.$router.push('/')
+    }
   }
 }
 
@@ -34,4 +48,14 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+    .logout {
+        width: 4rem;
+        height: 1.5rem;
+        background: #1b2530b9;
+        padding: 0;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        margin: .3rem;
+    }
 </style>

@@ -41,7 +41,7 @@ export default {
 
 <style lang="css" scoped>
 .bookings-list {
-  background: #000;
+  background: rgba(0, 0, 0, 0.534);
 }
 .bookings-list-container {
   color: rgb(255, 0, 179);

@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 module.exports.post = async (req, res) => {
-    console.log('whaa1! ' + req.body);
     try {
         
         let newUser = {

@@ -8,11 +8,20 @@ export default new Vuex.Store({
   state: {
     bookings: [],
     cars: [],
-    startDate: "",
-    endDate: "",
-    rejected: false,
-    choosenCar: {}
+    startDate: '',
+    endDate: '',
+    choosenCar: {},
+    eChosenCar: {
+      name: "Volvo",
+      model: "test",
+      color: "test",
+      price: "test",
+      bookable: true
+    },
+    currentUser: '',
+    apiUrl: 'http://localhost:3000'
   },
+
   mutations: {
     setBookings(state, bookings) {
       state.bookings = bookings;
@@ -33,7 +42,10 @@ export default new Vuex.Store({
       state.rejected = !state.rejected;
     },
     setCurrentUser(state, user) {
-      state.activeUser = user;
+      state.currentUser = user;
+    },
+    setChosenCar(state, car) {
+      state.eChosenCar = car;
     }
   },
   actions: {
@@ -55,9 +67,9 @@ export default new Vuex.Store({
     async deleteCar(ctx, id) {
       await axios.delete(`http://localhost:3000/cars/${id}`);
     },
-    async editCar(ctx, id) {
-      await axios.put(`http://localhost:3000/cars/${id}`);
-      ctx.commit("setCars", cars.data);
+    async editCar(ctx, data) {
+      await axios.patch(`http://localhost:3000/cars/`, data);
+    
     },
     async cancelBooking(ctx, id) {
       console.log(id);
@@ -65,13 +77,13 @@ export default new Vuex.Store({
     },
     async login(ctx, loginData) {
       try {
-        let token = await axios.post(`http://localhost:3000/auth`, loginData);
-
-        sessionStorage.setItem("authentic", token.data.authentification);
+        let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData);
+        sessionStorage.setItem("authentic", token.data.authToken);
 
         ctx.commit("setCurrentUser", token.data.username);
 
         ctx.dispatch("getItems");
+        
       } catch (err) {
         ctx.commit("toggleRejected");
         setTimeout(() => {
@@ -97,6 +109,12 @@ export default new Vuex.Store({
     },
     getCars(state) {
       return state.cars;
+    },
+    getChosenCar(state){
+      return state.eChosenCar;
+    },
+    getCurrentUser(state) {
+      return state.currentUser;
     }
   }
 });

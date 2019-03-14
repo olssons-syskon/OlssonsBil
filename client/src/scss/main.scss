@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
 $background: LightSteelBlue;
+$text: 'Fira Sans';
 
 %center {
   display: flex;
@@ -6,11 +9,22 @@ $background: LightSteelBlue;
   align-items: center;
 }
 
+:root {
+  background: url('../assets/background2.jpg') fixed;
+  background-size: 100%;
+}
+
 .btn {
   text-decoration: none;
   display: inline-block;
-  background: Silver;
+  background: rgba($color: #010, $alpha: .8);
   color: White;
   padding: 1rem;
   margin: 1rem;
+  border: none;
+  border-radius: 3px;
+}
+
+h2,h3,h4,p {
+  margin: 0;
 }

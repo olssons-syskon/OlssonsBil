@@ -2,10 +2,10 @@
     <main id="login">
         <article>
             <section class="login-inputs">
-                <div>Username:</div>
+                <h4>Username:</h4>
                 <input type="text" class="login-input-username" v-model="username">
-                <div>Password:</div>
-                <input type="password" class="login-input-password" v-model="password">
+                <h4>Password:</h4>
+                <input type="password" class="login-input-password" v-model="password" @keyup.enter="login">
                 <a href="#" class="btn" @click="login">Login</a>
             </section>
         </article>
@@ -17,17 +17,17 @@ export default {
     name: 'login',
     data() {
         return {
-            username: 'hank',
-            password: 'hank',
+            username: '',
+            password: '',
             validUsername: false,
             validPassword: false
         }
     },
     methods: {
-        login() {
+        async login() {
             if(this.validUsername && this.validPassword) {
-                this.$store.dispatch('login', {username: this.username, password: this.password});
-                this.$router.push('/admin');
+                await this.$store.dispatch('login', {username: this.username, password: this.password});
+                this.$router.push('admin');
             }
         }
     },
@@ -55,11 +55,29 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
+    h4 {
+        margin-top: .5rem;
+        text-shadow: 1px 1px #000;
+        color: #839eb9;
+    }
     .login-inputs {
-        width: 100px;
-        height: 200px;
-        background: rgb(120, 120, 250);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        input {
+            border-radius: 10px;
+            padding-left: 5px;
+        }
+    }
+    .btn {
+        width: 4rem;
+        height: 1.5rem;
+        background: #1b2530b9;
+        padding: 3px 0 0;
     }
 
 </style>
