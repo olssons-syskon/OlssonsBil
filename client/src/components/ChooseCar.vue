@@ -6,7 +6,7 @@
         <car v-for="car in availableCars" :key="car._id" :car="car" />
       </div>
     </div>
-    <div class="booked-cars">
+    <div class="booked-cars" v-if="bookedCars.length > 0">
       <h2 class="title">Booked cars</h2>
       <div>
         <car v-for="car in bookedCars" :key="car._id" :car="car" />

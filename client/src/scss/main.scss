@@ -10,15 +10,17 @@ $text: 'Fira Sans';
 }
 
 :root {
-  background: url('../assets/background2.jpg') fixed;
+  background: Azure url('../assets/background.jpg') no-repeat top;
+  background-attachment: fixed;
   background-size: 100%;
 }
 
 .btn {
   text-decoration: none;
   display: inline-block;
+  font-size: 1rem;
   background: rgba($color: #010, $alpha: .8);
-  color: White;
+  color: WhiteSmoke;
   padding: 1rem;
   margin: 1rem;
   border: none;
@@ -27,4 +29,10 @@ $text: 'Fira Sans';
 
 h2,h3,h4,p {
   margin: 0;
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    background: url('../assets/background2.jpg')
+  }
 }
