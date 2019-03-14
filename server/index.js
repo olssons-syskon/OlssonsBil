@@ -23,10 +23,11 @@ app.use(cors());
 app.route('/cars')
 .get(cars.get)
 .post(cars.post)
+.patch(cars.patch)
+
 
 app.route('/cars/:carId')
 .delete(cars.delete)
-.put(cars.put)
 
 app.route('/booking')
 .get(booking.get)
