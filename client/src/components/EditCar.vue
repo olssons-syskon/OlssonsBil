@@ -14,7 +14,7 @@
       <div>
         <input name="bookable" type="text" placeholder="If bookable" v-model="car.bookable">
       </div>
-      <button class="app_post_btn" @click="editCar(car._id)">DO IT!</button>
+      <button class="app_post_btn" @click="editCar(car.id)">DO IT!</button>
     </div>
   </div>
 </template>
@@ -37,16 +37,26 @@ export default {
       }
     };
   },
+  beforeCreated(){
+   // console.log(id)
+  },
   computed: {
     cars() {
-      return this.$store.getters.getCars;
+      //return this.$store.getters.getCars;
+      return this.$route.params.data
     }
   },
   methods: {
     editCar(id) {
+      var id = this.$route.params.id;
+      name = this.$route.params.name
+      console.log(id)
       this.$store.dispatch("editCar", id);
+      console.log('dispatched editCar')
       this.$store.dispatch("retrieveCars");
-      this.$router.push("/Admin");
+      console.log('dispatched retrieveCars')
+
+      this.$router.push(`/admin`);
     }
   }
 };

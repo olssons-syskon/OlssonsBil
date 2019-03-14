@@ -1,6 +1,7 @@
 <template>
   <main id="admin">
     <EditCar />
+        <router-view />
   </main>
 </template>
 
