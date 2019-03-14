@@ -9,7 +9,8 @@ export default new Vuex.Store({
     bookings: [],
     cars: [],
     startDate: '',
-    endDate: ''
+    endDate: '',
+    rejected: false
   },
   mutations: {
     setBookings(state, bookings) {
@@ -43,7 +44,7 @@ export default new Vuex.Store({
     },
     async cancelBooking(ctx, id) {
       console.log(id)
-      await axios.delete('http://localhost:3000/booking/', id);
+      await axios.delete(`http://localhost:3000/booking/${id}`);
     }
   },
   getters: {

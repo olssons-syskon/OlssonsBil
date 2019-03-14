@@ -33,7 +33,6 @@ export default {
   },
   methods: {
       cancelBooking() {
-          console.log("whaa" + this.id)
            this.$store.dispatch('cancelBooking', this.id);
       }
   }

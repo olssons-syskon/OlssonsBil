@@ -16,12 +16,17 @@ export default {
     data() {
         return {
             booking: {
-                fromDate: new Date(2025, 4, 7),
-                toDate: new Date(2118, 5, 24),
-                car: 'Chevy Impala',
-                cost: 500,
-                booker: 'Dean Winchester 666'
+                fromDate: new Date(2019, 4, 7),
+                toDate: new Date(2019, 5, 24),
+                car: 'Tumbler',
+                cost: 5907,
+                booker: 'Je joe'
             }
+        }
+    },
+    computed: {
+        cars() {
+            return this.getters.getCars
         }
     },
     methods: {

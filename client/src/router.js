@@ -31,6 +31,11 @@ export default new Router({
       path: '/bookings',
       name: 'bookings',
       component: () => import('./views/Bookings.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/Login.vue')
     }
   ]
 })
