@@ -21,8 +21,4 @@ export default {
 
 @import '../scss/main.scss';
 
-:root {
-  background: $background;
-}
-
 </style>

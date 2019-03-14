@@ -31,10 +31,9 @@ export default {
   width: 50vw;
   display: flex;
   align-items: flex-start;
-  background: WhiteSmoke;
+  background: White;
   box-sizing: border-box;
   padding: .5rem;
-  margin-bottom: .5rem;
 
   img {
     flex: 1;
@@ -42,7 +41,7 @@ export default {
   }
 
   .car-info {
-    flex: 4;
+    flex: 3;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

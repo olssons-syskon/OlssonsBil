@@ -57,6 +57,9 @@ export default {
   h1 {
     font-size: 3rem;
   }
+  h2 {
+    margin: 1rem 0;
+  }
 
   .calendars {
     display: flex;
@@ -78,7 +81,7 @@ export default {
       }
     }
   }
-  
+
   .errorMsg {
     color: Crimson;
     font-style: italic;

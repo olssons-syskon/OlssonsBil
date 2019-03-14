@@ -1,11 +1,13 @@
 <template>
   <article class="choose-car">
     <div class="available-cars">
-      <h2>Avaliable cars</h2>
-      <car v-for="car in availableCars" :key="car._id" :car="car" />
+      <h2 class="title">Avaliable cars</h2>
+      <div>
+        <car v-for="car in availableCars" :key="car._id" :car="car" />
+      </div>
     </div>
     <div class="booked-cars">
-      <h2>Booked cars</h2>
+      <h2 class="title">Booked cars</h2>
       <div>
         <car v-for="car in bookedCars" :key="car._id" :car="car" />
       </div>
@@ -62,11 +64,17 @@ export default {
   flex-direction: column;
   align-items: center;
 
-  .available-cars {
+  .available-cars, .booked-cars {
+    background: Black;
+
+    .title {
+      background: #020;
+      padding: .5rem;
+      color: White;
+    }
   }
 
   .booked-cars {
-
     div {
       opacity: .6;
       pointer-events: none;
