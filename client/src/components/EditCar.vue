@@ -49,14 +49,14 @@ export default {
   methods: {
     editCar(id) {
       var id = this.$route.params.id;
-      name = this.$route.params.name
+      //name = this.$route.params.name
       console.log(id)
       this.$store.dispatch("editCar", id);
       console.log('dispatched editCar')
       this.$store.dispatch("retrieveCars");
       console.log('dispatched retrieveCars')
-
       this.$router.push(`/admin`);
+      this.$store.dispatch('retrieveCars')
     }
   }
 };

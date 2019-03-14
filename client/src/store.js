@@ -50,7 +50,6 @@ export default new Vuex.Store({
     },
     async editCar(ctx, id) {
       await axios.put(`http://localhost:3000/cars/${id}`);
-      ctx.commit('setCars', cars.data)
     },
     async cancelBooking(ctx, id) {
       console.log(id)

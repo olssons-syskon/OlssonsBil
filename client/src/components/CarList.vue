@@ -60,6 +60,8 @@ export default {
       this.$store.dispatch("deleteCar", id);
       this.$store.dispatch("retrieveCars");
       this.$router.push("/Admin");
+            this.$store.dispatch("retrieveCars");
+
     },
     editCar(id) {
       console.log(id);
