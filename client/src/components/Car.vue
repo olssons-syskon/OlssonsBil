@@ -1,8 +1,14 @@
 <template>
   <section id="car" @click="selectCar(car)">
-    <h2>{{ car.name }}</h2>
-    <p>{{ car.model }}</p>
-    <p class="price">{{ car.price }} SEK</p>
+    <img v-bind:src="car.img"  alt="">
+    <div class="car-info">
+      <h2>{{ car.name }}</h2>
+      <h3>{{ car.model }}</h3>
+      <p class="info">{{ car.info }}</p>
+    </div>
+    <div class="price">
+      <p>{{ car.price }} SEK</p>
+    </div>
   </section>
 </template>
 
@@ -24,26 +30,47 @@ export default {
 #car {
   width: 50vw;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   background: WhiteSmoke;
   box-sizing: border-box;
   padding: .5rem;
-  margin-bottom: .25rem;
+  margin-bottom: .5rem;
 
-  h2, p {
-    margin: 0;
+  img {
+    flex: 1;
+    width: 200px;
   }
+
+  .car-info {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: .5rem .5rem .5rem 1rem;
+
+    h2, h3 {
+      margin: 0;
+    }
+    .info {
+      font-style: italic;
+      text-align: left;
+      padding-right: 3rem;
+    }
+  }
+
   .price {
     align-self: flex-end;
-    font-weight: bold;
-  }
+    flex: 1;
 
+    p {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
 
   @media screen and (max-width: 480px) {
     width: 80vw;
   }
-
 }
 
 </style>
