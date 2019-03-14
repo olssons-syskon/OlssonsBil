@@ -10,20 +10,24 @@ export default new Vuex.Store({
     cars: [],
     startDate: '',
     endDate: '',
-    rejected: false
+    rejected: false,
+    choosenCar: {}
   },
   mutations: {
     setBookings(state, bookings) {
-      state.bookings = bookings
+      state.bookings = bookings;
     },
     setCars(state, cars) {
-      state.cars = cars
+      state.cars = cars;
     },
     changeStart(state, from) {
       state.startDate = from;
     },
     changeEnd(state, to) {
       state.endDate = to;
+    },
+    selectCar(state, car) {
+      state.choosenCar = car;
     }
   },
   actions: {
@@ -40,7 +44,14 @@ export default new Vuex.Store({
     },
     async retrieveCars(ctx) {
       let cars = await axios.get('http://localhost:3000/cars');
-      ctx.commit('setCars', cars.data);
+      ctx.commit('setCars', cars.data);    
+    },
+    async deleteCar(ctx, id){
+      await axios.delete(`http://localhost:3000/cars/${id}`)
+    },
+    async editCar(ctx, id) {
+      await axios.put(`http://localhost:3000/cars/${id}`);
+      ctx.commit('setCars', cars.data)
     },
     async cancelBooking(ctx, id) {
       console.log(id)
