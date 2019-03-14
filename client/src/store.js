@@ -10,8 +10,16 @@ export default new Vuex.Store({
     cars: [],
     startDate: '',
     endDate: '',
-    choosenCar: {}
+    choosenCar: {},
+    eChosenCar: {
+      name: "Volvo",
+      model: "test",
+      color: "test",
+      price: "test",
+      bookable: true
+    }
   },
+
   mutations: {
     setBookings(state, bookings) {
       state.bookings = bookings;
@@ -27,6 +35,10 @@ export default new Vuex.Store({
     },
     selectCar(state, car) {
       state.choosenCar = car;
+    },
+    setChosenCar(state, car) {
+      state.eChosenCar = car;
+      console.log(car)
     }
   },
   actions: {
@@ -48,8 +60,9 @@ export default new Vuex.Store({
     async deleteCar(ctx, id){
       await axios.delete(`http://localhost:3000/cars/${id}`)
     },
-    async editCar(ctx, id) {
-      await axios.put(`http://localhost:3000/cars/${id}`);
+    async editCar(ctx, data) {
+      await axios.patch(`http://localhost:3000/cars/`, data);
+    
     },
     async cancelBooking(ctx, id) {
       console.log(id)
@@ -62,6 +75,9 @@ export default new Vuex.Store({
     },
     getCars(state) {
       return state.cars;
+    },
+    getChosenCar(state){
+      return state.eChosenCar
     }
   }
 })

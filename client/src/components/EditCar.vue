@@ -2,68 +2,79 @@
   <div class="edit">
     <h1>Update data about the car</h1>
     <div class="form">
-      <div>
-        <input name="name" type="text" placeholder="Name" v-model="car.name">
-      </div>
-      <div>
-        <input name="model" type="text" placeholder="Model" v-model="car.model">
-      </div>
-      <div>
-        <input name="price" type="text" placeholder="Price" v-model="car.price">
-      </div>
-      <div>
-        <input name="bookable" type="text" placeholder="If bookable" v-model="car.bookable">
-      </div>
-      <button class="app_post_btn" @click="editCar(car.id)">DO IT!</button>
+        <div>
+          <input name="name" type="text" placeholder="Name" v-model="eCar.name"> 
+        </div>
+        <div>
+          <input name="model" type="text" placeholder="Model" v-model="eCar.model">
+        </div>
+        <div>
+          <input name="bookable" type="text" placeholder="If bookable" v-model="eCar.color">
+        </div>
+        <div>
+          <input name="price" type="text" placeholder="Price" v-model="eCar.price">
+        </div>
+        <div>
+          <input name="bookable" type="text" placeholder="If bookable" v-model="eCar.bookable">
+        </div>
+        <div>
+          <input name="booked from" type="text" placeholder="Is booked from" v-model="eCar.booked.from">
+        </div>
+        <div>
+          <input name="booked to" type="text" placeholder="Is booked to" v-model="eCar.booked.to">
+        </div>
+        <button class="app_post_btn" @click="editCar(eCar)">DO IT!</button>
+        <!-- <input type="submit" value="Submit"> -->
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-   data() {
+  data() {
     return {
       car: {
-        name: '',
-        model: '',
-        color: '',
-        price: '',
+        name: "",
+        model: "",
+        color: "",
+        price: "",
+        color:"",
         bookable: true
-     /*    booked: {
+        /*    booked: {
           from: '2000-01-01',
           to: '2000-01-01'
         } */
       }
     };
   },
-  beforeCreated(){
-   // console.log(id)
+  beforeMount() {
+    console.log(this.eCar)
   },
   computed: {
-    cars() {
-      //return this.$store.getters.getCars;
-      return this.$route.params.data
+    eCar() {
+      return this.$store.getters.getChosenCar;
+      //return this.$route.params.data
     }
   },
   methods: {
-    editCar(id) {
-      var id = this.$route.params.id;
+    editCar(data) {
+      //var id = this.$route.params.id;
       //name = this.$route.params.name
-      console.log(id)
-      this.$store.dispatch("editCar", id);
-      console.log('dispatched editCar')
+      //console.log(id);
+      this.$store.dispatch("editCar", data);
+      console.log("dispatched editCar");
+
       this.$store.dispatch("retrieveCars");
-      console.log('dispatched retrieveCars')
+      console.log("dispatched retrieveCars");
       this.$router.push(`/admin`);
-      this.$store.dispatch('retrieveCars')
+      this.$store.dispatch("retrieveCars");
     }
   }
 };
 </script>
 <style type="text/css">
 h1 {
-  color:brown
+  color: brown;
 }
 .form input,
 .form textarea {

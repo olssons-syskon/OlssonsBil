@@ -8,8 +8,10 @@
             <td>Model</td>
             <td>Color</td>
             <td>Price (kr/day)</td>
-            <!--    <td>Bookable</td>
-            <td>Booked</td>-->
+            <td>Bookable</td>
+         <!--    <td>Booked from</td>
+            <td>Booked to</td> -->
+
           </tr>
         </thead>
         <tbody>
@@ -18,11 +20,13 @@
             <td>{{ car.model }}</td>
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
+            <td>{{ car.bookable }}</td>
+        <!--     <td>{{ car.booked.from }}</td>
+            <td>{{ car.booked.to }}</td> -->
+
             <button @click="deleteCar(car._id)">Delete</button>
-            <button @click="editCar(car._id)">Edit</button>
-            <!-- <router-link to="/admin/edit">Edit</router-link> -->
-            <!-- <td>{{ car.bookable }}</td>
-            <td>{{ car.booked }}</td>-->
+            <button @click=" chosenCar = car; editCar(car._id)">Edit</button>
+  
           </tr>
         </tbody>
       </table>
@@ -40,8 +44,9 @@ export default {
         color: "",
         price: "",
         bookable: true,
-        booked: false
-      }
+        booked: false,
+      },
+        chosenCar:''
     };
   },
 
@@ -65,6 +70,7 @@ export default {
     },
     editCar(id) {
       console.log(id);
+      this.$store.commit('setChosenCar', this.chosenCar)
       this.$router.push(`/edit/${id}`);
       //<router-link to="/confirm">Admin</router-link>
     }
