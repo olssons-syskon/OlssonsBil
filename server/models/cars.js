@@ -7,6 +7,8 @@ let carsSchema = new Schema({
     model: String,
     color: String,
     price: Number,
+    info: String,
+    img: String,
     bookable: Boolean,
     booked: {
       from: Date,

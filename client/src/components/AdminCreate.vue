@@ -1,5 +1,4 @@
 <template>
-
   <article class="add-cars">
     <h3>Name:</h3>
     <input type="text" v-model="car.name" >
@@ -7,6 +6,10 @@
     <input type="text" v-model="car.model" >
     <h3>Color:</h3>
     <input type="text" v-model="car.color" >
+    <h3>Info:</h3>
+    <input type="text" v-model="car.info" >
+    <h3>Image:</h3>
+    <input type="text" v-model="car.img">
     <h3>Price:</h3>
     <input type="text" v-model.number="car.price" >
     <button @click="createCar">Add</button>
@@ -23,6 +26,8 @@ export default {
         model: '',
         color: '',
         price: '',
+        info: '',
+        img: 'https://cdn5.vectorstock.com/i/1000x1000/76/94/car-vintage-car-icon-flat-style-vector-8087694.jpg',
         bookable: true,
         booked: {
           from: '2000-01-01',
