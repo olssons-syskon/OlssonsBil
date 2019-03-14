@@ -28,8 +28,9 @@ export default {
   },
   methods: {
     logout() {
-      sessionStorage.removeItem('authentic')
+      sessionStorage.removeItem('authentic');
       this.$store.state.currentUser = '';
+      this.$store.state.items = '';
       this.$router.push('/')
     }
   }

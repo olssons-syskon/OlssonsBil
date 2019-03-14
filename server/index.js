@@ -17,7 +17,7 @@ let cars = require('./route/cars');
 let booking = require('./route/booking');
 let auth = require('./route/auth');
 let user = require('./route/users');
-let items = require('./route/adminItems')
+let adminItems = require('./route/adminItems')
 
 let app = express();
 
@@ -59,4 +59,4 @@ app.route('/users')
 .post(user.post)
 
 app.route('/adminItems')
-.get(items.get)
+.get(adminItems.get)

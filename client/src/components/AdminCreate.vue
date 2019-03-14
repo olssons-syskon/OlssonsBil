@@ -52,9 +52,10 @@ export default {
     }
   },
   beforeMount() {
-    this.$store.getters.getCurrentUser
-    if (this.$store.state.currentUser == "") {
+    if (this.$store.getters.getCurrentUser == "" && this.$store.getters.getItems != 'admin') {
       this.$router.push("login");
+    } else if(this.$store.getters.getCurrentUser != "" && this.$store.getters.getItems == 'user') {
+      this.$router.push("/");
     }
     this.$store.dispatch("retrieveCars");
 

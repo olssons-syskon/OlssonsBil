@@ -19,7 +19,8 @@ export default new Vuex.Store({
       bookable: true
     },
     currentUser: '',
-    apiUrl: 'http://localhost:3000'
+    apiUrl: 'http://localhost:3000',
+    items: ''
   },
 
   mutations: {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
     setChosenCar(state, car) {
       state.eChosenCar = car;
+    },
+    setItems(state, items) {
+      state.items = items
     }
   },
   actions: {
@@ -80,6 +84,8 @@ export default new Vuex.Store({
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData);
         sessionStorage.setItem("authentic", token.data.authToken);
 
+        console.log(token)
+
         ctx.commit("setCurrentUser", token.data.username);
 
         ctx.dispatch("getItems");
@@ -99,8 +105,8 @@ export default new Vuex.Store({
           authorization: `Bearer ${sessionStorage.getItem("authentic")}`
         }
       };
-      let items = await axios.get(`${ctx.state.apiUrl}/items`, opt);
-      console.log(items);
+      let items = await axios.get(`${ctx.state.apiUrl}/adminItems`, opt);
+      ctx.commit('setItems', items.data)
     }
   },
   getters: {
@@ -115,6 +121,9 @@ export default new Vuex.Store({
     },
     getCurrentUser(state) {
       return state.currentUser;
-    }
+    },
+    getItems(state){
+      return state.items;
+    },
   }
 });

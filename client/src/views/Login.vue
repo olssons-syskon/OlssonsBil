@@ -3,7 +3,7 @@
         <article>
             <section class="login-inputs">
                 <h4>Username:</h4>
-                <input type="text" class="login-input-username" v-model="username">
+                <input type="text" class="login-input-username" v-model="username" autofocus>
                 <h4>Password:</h4>
                 <input type="password" class="login-input-password" v-model="password" @keyup.enter="login">
                 <a href="#" class="btn" @click="login">Login</a>
