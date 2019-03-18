@@ -27,7 +27,7 @@ export default {
     methods: {
         async login() {
             if(this.validUsername && this.validPassword) {
-                await this.$store.dispatch('login', {username: this.username, password: this.password});
+                await this.$store.dispatch('login', {username: this.username.toLowerCase(), password: this.password});
                 this.$router.push('admin');
             }
         },

@@ -15,7 +15,7 @@
         <p>{{ booking.toDate }}</p>
         <p>{{ booking.car }}</p>
         <p>{{ booking.cost }}</p>
-        <input type="text" v-model="booking.booker">
+        <p>{{ booking.booker }}</p>
       </div>
     </section>
 
@@ -36,7 +36,7 @@ export default {
         toDate: this.$store.state.endDate,
         car: this.$store.state.choosenCar.name,
         cost: this.$store.state.choosenCar.price,
-        booker: ""
+        booker: this.$store.state.currentUser
       },
       totalCost: this.$store.state.choosenCar.price
     }

@@ -57,6 +57,7 @@ app.route('/auth')
 
 app.route('/users')
 .post(user.post)
+// .get(user.get)
 
 app.route('/adminItems')
 .get(adminItems.get)

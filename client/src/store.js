@@ -20,7 +20,9 @@ export default new Vuex.Store({
     },
     currentUser: '',
     apiUrl: 'http://localhost:3000',
-    items: ''
+    items: '',
+    nameNotInUse: true,
+    usernameInUseMessage: 'Username'
   },
 
   mutations: {
@@ -57,8 +59,13 @@ export default new Vuex.Store({
       await axios.post("http://localhost:3000/cars", car);
     },
     async createUser(ctx, user) {
-      console.log(user)
-      await axios.post('http://localhost:3000/users', user)
+      let newUser = await axios.post('http://localhost:3000/users', user)
+      if(!newUser.data.notInUse) {
+        ctx.state.nameNotInUse = false
+        ctx.state.usernameInUseMessage = newUser.data.message
+      } else {
+        ctx.state.nameNotInUse = true
+      }
     },
     async createBooking(ctx, booking) {
       await axios.post("http://localhost:3000/booking/", booking);
@@ -80,15 +87,12 @@ export default new Vuex.Store({
     
     },
     async cancelBooking(ctx, id) {
-      console.log(id);
       await axios.delete(`http://localhost:3000/booking/${id}`);
     },
     async login(ctx, loginData) {
       try {
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData);
         sessionStorage.setItem("authentic", token.data.authToken);
-
-        console.log(token)
 
         await ctx.commit("setCurrentUser", token.data.username);
 
@@ -111,7 +115,6 @@ export default new Vuex.Store({
       };
       let items = await axios.get(`${ctx.state.apiUrl}/adminItems`, opt);
 
-      console.log('rghjk' +items.data)
       await ctx.commit('setItems', items.data)
     }
   },
