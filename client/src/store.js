@@ -56,6 +56,10 @@ export default new Vuex.Store({
     async createCar(ctx, car) {
       await axios.post("http://localhost:3000/cars", car);
     },
+    async createUser(ctx, user) {
+      console.log(user)
+      await axios.post('http://localhost:3000/users', user)
+    },
     async createBooking(ctx, booking) {
       await axios.post("http://localhost:3000/booking/", booking);
       // localStorage.setItem('booking'+ctx.state.bookings, JSON.stringify(booking))
@@ -86,10 +90,10 @@ export default new Vuex.Store({
 
         console.log(token)
 
-        ctx.commit("setCurrentUser", token.data.username);
+        await ctx.commit("setCurrentUser", token.data.username);
 
-        ctx.dispatch("getItems");
-        
+        await ctx.dispatch("getItems");
+
       } catch (err) {
         ctx.commit("toggleRejected");
         setTimeout(() => {
@@ -100,13 +104,15 @@ export default new Vuex.Store({
       }
     },
     async getItems(ctx) {
-      let opt = {
+      let opt = await {
         headers: {
           authorization: `Bearer ${sessionStorage.getItem("authentic")}`
         }
       };
       let items = await axios.get(`${ctx.state.apiUrl}/adminItems`, opt);
-      ctx.commit('setItems', items.data)
+
+      console.log('rghjk' +items.data)
+      await ctx.commit('setItems', items.data)
     }
   },
   getters: {

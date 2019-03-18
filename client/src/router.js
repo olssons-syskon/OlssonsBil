@@ -40,9 +40,16 @@ export default new Router({
     },
     
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('./views/Login.vue')
+      path: '/user',
+      name: 'user',
+      component: () => import('./views/User.vue'),
+      children: [
+        {
+          path: '/create-user',
+          name: 'createUser',
+          component: () => import('./components/CreateUser.vue')
+        }
+      ]
     }
   ]
 })

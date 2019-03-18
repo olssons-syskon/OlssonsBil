@@ -6,6 +6,6 @@ module.exports.get = async (req, res) => {
     if(await auth.isAdmin(req.headers.authorization)) {
         res.status(200).send('admin')
     } else {
-        res.status(403).send("You faker! You're no admin")
+        res.status(200).send("user")
     }
 }

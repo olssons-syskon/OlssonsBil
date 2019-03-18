@@ -7,6 +7,7 @@
                 <h4>Password:</h4>
                 <input type="password" class="login-input-password" v-model="password" @keyup.enter="login">
                 <a href="#" class="btn" @click="login">Login</a>
+                <a href="#" class="btn" @click="openCreateUser()">New User</a>
             </section>
         </article>
     </main>
@@ -29,6 +30,9 @@ export default {
                 await this.$store.dispatch('login', {username: this.username, password: this.password});
                 this.$router.push('admin');
             }
+        },
+        openCreateUser() {
+            this.$router.push(`/create-user`)
         }
     },
     watch: {
@@ -56,17 +60,17 @@ export default {
 </script>
 
 <style lang='scss'>
+
     h4 {
         margin-top: .5rem;
         text-shadow: 1px 1px #000;
         color: #839eb9;
     }
     .login-inputs {
-        height: 100vh;
+        margin: 10rem 0 5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         
         input {
             border-radius: 10px;

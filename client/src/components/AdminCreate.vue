@@ -50,15 +50,6 @@ export default {
     cars() {
       return this.$store.getters.getCars;
     }
-  },
-  beforeMount() {
-    if (this.$store.getters.getCurrentUser == "" && this.$store.getters.getItems != 'admin') {
-      this.$router.push("login");
-    } else if(this.$store.getters.getCurrentUser != "" && this.$store.getters.getItems == 'user') {
-      this.$router.push("/");
-    }
-    this.$store.dispatch("retrieveCars");
-
   }
 };
 </script>
