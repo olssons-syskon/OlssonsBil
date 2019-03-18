@@ -39,7 +39,6 @@ export default {
       return avaliable;
     },
     bookedCars() {
-      // return this.$store.getters.getCars;
       let searchStartDate = this.$store.state.startDate;
       let sYear = searchStartDate.slice(0,4);
       let sMonth = searchStartDate.slice(5,7);
@@ -47,7 +46,7 @@ export default {
 
       // kollar om det sökta bokningsdatumet är "högre" än det bilen är bokad till
       return this.$store.getters.getCars.filter((car) => {
-        return car.booked.to.slice(0,4) >= sYear && car.booked.to.slice(5,7) >= sMonth && car.booked.to.slice(8,10) >= sDay;
+        return car.booked.to.slice(0,4) >= sYear && car.booked.to.slice(5,7) >= sMonth && car.booked.to.slice(8,10) <= sDay;
       })
     }
   }
@@ -64,12 +63,10 @@ export default {
   align-items: center;
 
   .available-cars, .booked-cars {
-    background: Black;
 
     .title {
-      background: #020;
       padding: .5rem;
-      color: White;
+      color: $ghost;
     }
   }
 

@@ -20,7 +20,9 @@ export default new Vuex.Store({
     },
     currentUser: '',
     apiUrl: 'http://localhost:3000',
-    items: ''
+    items: '',
+    // antal dagar i bokningen
+    days: 0
   },
 
   mutations: {
@@ -38,6 +40,11 @@ export default new Vuex.Store({
     },
     selectCar(state, car) {
       state.choosenCar = car;
+      // antal dagar bokningen är på
+      let start = Date.parse(state.startDate);
+      let end = Date.parse(state.endDate);
+      let timeDiff = end - start;
+      state.days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     },
     toggleRejected(state) {
       state.rejected = !state.rejected;

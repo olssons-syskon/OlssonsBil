@@ -15,7 +15,7 @@
         <p>{{ booking.fromDate }}</p>
         <p>{{ booking.toDate }}</p>
         <p>{{ booking.car }}</p>
-        <p>{{ booking.cost }} SEK</p>
+        <p>{{ booking.cost }} SEK x {{ days }} days</p>
         <input type="text" v-model="booking.booker">
         <p class="insText">Add insurance for the vehicle for the fine amount of {{ insurance.cost }} SEK.</p>
       </div>
@@ -38,15 +38,17 @@ export default {
         cost: this.$store.state.choosenCar.price,
         booker: ""
       },
-      totalCost: this.$store.state.choosenCar.price,
+      totalCost: this.$store.state.choosenCar.price * this.$store.state.days,
       insurance: {
         cost: 499,
         choosen: false
-      }
+      },
+      days: this.$store.state.days
     }
   },
   methods: {
     confirmBooking() {
+      this.booking.cost = this.totalCost;
       this.$store.dispatch('createBooking', this.booking)
       this.$router.push(`/bookings`)
     },
@@ -115,6 +117,7 @@ export default {
       .insText {
         text-align: left;
         font-size: .9rem;
+        color: White;
       }
     }
   }

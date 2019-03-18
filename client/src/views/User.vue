@@ -11,11 +11,11 @@
 import Login from '../components/Login.vue'
 import CreateUser from '../components/CreateUser.vue'
 export default {
-    name: 'user',
-    components: {
-        Login,
-        CreateUser
-    }
+  name: 'user',
+  components: {
+    Login,
+    CreateUser
+  }
 }
 </script>
 
@@ -29,8 +29,8 @@ export default {
   .user {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10rem;
-    width: 60vw;
+    grid-gap: 2rem;
+    width: 50vw;
     margin: auto;
 
     h2 {
@@ -38,10 +38,11 @@ export default {
     }
 
     .login-inputs, .create-user-inputs {
-      background: Linen;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      box-sizing: border-box;
+      padding: .5rem;
 
       h4 {
         font-family: 'Montserrat';

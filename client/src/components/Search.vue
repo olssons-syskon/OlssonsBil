@@ -9,6 +9,7 @@
     </div>
     <a href="#" class="btn" @click="searchCars(startDate, endDate)">Find me a car!</a>
     <p class="errorMsg" v-show="noDate">I need a date. Please date me.</p>
+    <p class="errorMsg" v-show="invalidDate">Invalid dates.</p>
   </article>
 </template>
 
@@ -25,17 +26,22 @@ export default {
   data() {
     return {
       startDate: '2019-03-10',
-      endDate: '2019-04-05',
-      noDate: false
+      endDate: '2019-03-20',
+      noDate: false,
+      invalidDate: false
     }
   },
   methods: {
     hideError() {
       this.noDate = false;
+      this.invalidDate = false;
     },
     searchCars(from, to) {
       if(from == '' || to == '') {
         this.noDate = true;
+      }
+      else if(from > to || from == to) {
+        this.invalidDate = true;
       }
       else {
         this.$store.commit('changeStart', from)
