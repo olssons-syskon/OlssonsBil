@@ -85,7 +85,7 @@ export default {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  background: #000;
+  background: rgba(0, 0, 0, 0.534);
   color: rgb(255, 0, 157);
   padding: 1rem;
 }
