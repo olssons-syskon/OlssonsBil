@@ -12,7 +12,7 @@ export default new Vuex.Store({
     endDate: '',
     choosenCar: {},
     eChosenCar: {
-      name: "Volvo",
+      name: "test",
       model: "test",
       color: "test",
       price: "test",
@@ -22,7 +22,11 @@ export default new Vuex.Store({
     apiUrl: 'http://localhost:3000',
     items: '',
     nameNotInUse: true,
-    usernameInUseMessage: 'Username'
+    usernameInUseMessage: 'Username',
+    backToConfirm: false,
+    backToBookings: false,
+    componentKey: 0
+    
   },
 
   mutations: {
@@ -69,11 +73,10 @@ export default new Vuex.Store({
     },
     async createBooking(ctx, booking) {
       await axios.post("http://localhost:3000/booking/", booking);
-      // localStorage.setItem('booking'+ctx.state.bookings, JSON.stringify(booking))
     },
     async retrieveBookings(ctx) {
       let bookings = await axios.get("http://localhost:3000/booking");
-      ctx.commit("setBookings", bookings.data);
+      await ctx.commit("setBookings", bookings.data);
     },
     async retrieveCars(ctx) {
       let cars = await axios.get("http://localhost:3000/cars");
@@ -87,7 +90,12 @@ export default new Vuex.Store({
     
     },
     async cancelBooking(ctx, id) {
-      await axios.delete(`http://localhost:3000/booking/${id}`);
+      try{
+        await axios.delete(`http://localhost:3000/booking/${id}`);
+        ctx.dispatch('retrieveBookings')
+      } catch(err) {
+        console.error(err)
+      }
     },
     async login(ctx, loginData) {
       try {

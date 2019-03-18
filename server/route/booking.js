@@ -17,9 +17,9 @@ module.exports.post = async (req, res) => {
 }
 
 module.exports.delete = async (req, res) => {
-    console.log(req.params.bookingId)
     try {
         await Booking.findOneAndDelete({ _id: req.params.bookingId })
+        res.status(200).send('Alles gut')
     } catch(err) {
         console.error(err.stack)
     }

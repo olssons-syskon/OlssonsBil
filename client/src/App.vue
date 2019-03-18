@@ -31,6 +31,8 @@ export default {
       sessionStorage.removeItem('authentic');
       this.$store.state.currentUser = '';
       this.$store.state.items = '';
+      this.$store.state.backToConfirm = false
+      this.$store.state.backToBookings = false
       this.$router.push('/')
     }
   }

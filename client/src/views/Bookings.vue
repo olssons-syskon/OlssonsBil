@@ -10,11 +10,6 @@ export default {
   name: 'bookings',
   components: {
     BookingList
-  },
-
-  beforeMount() {
-    this.$store.dispatch("retrieveBookings");
-    console.log(this.$store.state.bookings)
   }
 }
 </script>

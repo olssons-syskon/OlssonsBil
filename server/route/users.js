@@ -29,12 +29,3 @@ module.exports.post = async (req, res) => {
         res.status(400).send(err.stack)
     }
 }
-// module.exports.get = async (req, res) => {
-//     try {
-//         //let checkUser = await User.findOne(req.body.user)
-//         await console.log(req.body.user)
-//         res.status(200).send(await User.find({}))
-//     } catch(err) {
-//         res.status(500).send(err)
-//     }
-// }

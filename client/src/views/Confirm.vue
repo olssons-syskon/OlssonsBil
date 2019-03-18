@@ -10,6 +10,11 @@ export default {
   name: 'confirm',
   components: {
     ConfirmBooking
+  },
+  beforeMount() {
+    if(this.$store.state.choosenCar.name == 'test') {
+      this.$router.push('/')
+    }
   }
 }
 </script>

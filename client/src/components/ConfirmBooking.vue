@@ -42,9 +42,15 @@ export default {
     }
   },
   methods: {
-    confirmBooking() {
-      this.$store.dispatch('createBooking', this.booking)
+    async confirmBooking() {
+      await this.$store.dispatch('createBooking', this.booking)
       this.$router.push(`/bookings`)
+    }
+  },
+  beforeMount() {
+    if(this.$store.state.currentUser == '') {
+      this.$store.state.backToConfirm = true
+      this.$router.push('user')
     }
   }
 }

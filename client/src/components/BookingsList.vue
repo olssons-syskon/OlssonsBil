@@ -1,6 +1,6 @@
 <template>
   <article class="bookings-list">
-    <section class="bookings-list-container" v-for="booking in bookings" :key="booking.fromDate">
+    <section class="bookings-list-container" v-for="booking in bookings" :key="booking._id">
       <h3>Date:</h3>
       <div>
         {{ booking.fromDate }}
@@ -22,19 +22,31 @@
 export default {
   name: "bookings-list",
   data() {
-      return {
-          id: ''
-      }
+    return {
+      id: ""
+    };
   },
   computed: {
     bookings() {
       return this.$store.getters.getBookings;
+    },
+    filteredBookingsByUser() {
+      return this.bookings.filter(booking => {
+        return booking.booker === this.$store.state.currentUser;
+      });
     }
   },
   methods: {
-      cancelBooking() {
-           this.$store.dispatch('cancelBooking', this.id);
-      }
+    async cancelBooking() {
+      await this.$store.dispatch("cancelBooking", this.id);
+    }
+  },
+  beforeMount() {
+    this.$store.dispatch("retrieveBookings");
+    if (this.$store.state.currentUser == "") {
+      this.$store.state.backToBookings = true;
+      this.$router.push("user");
+    }
   }
 };
 </script>
