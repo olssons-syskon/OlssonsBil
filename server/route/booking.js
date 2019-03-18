@@ -37,11 +37,7 @@ module.exports.delete = async (req, res) => {
         })
 
         await Booking.findOneAndDelete({ _id: req.params.bookingId })
-<<<<<<< HEAD
         res.status(200).send('Alles gut')
-=======
-        res.status(200).send("Alles gut")
->>>>>>> master
     } catch(err) {
         console.error(err.stack)
     }

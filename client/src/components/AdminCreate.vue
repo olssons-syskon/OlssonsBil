@@ -11,7 +11,7 @@
       <input type="text" v-model="car.info">
       <p>Image:</p>
       <input type="text" v-model="car.img">
-      <Price:</p>
+      <p>Price:</p>
       <input type="text" v-model.number="car.price">
     </section>
     <a class="btn" @click="createCar">Add</a>
