@@ -112,7 +112,7 @@ export default {
         padding: .25rem;
         margin: .25rem;
         border: none;
-        background: rgba($color: WhiteSmoke, $alpha: .5);
+        background: $ghost;
       }
       .insText {
         text-align: left;

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="user">{{ user }}</div>
+    <div class="user">Logged in as: <b>{{ user.slice(0,1).toUpperCase() }}{{ user.slice(1) }}</b></div>
     <div id="nav">
       <router-link to="/">Start</router-link> |
       <router-link to="/confirm">Confirm</router-link> |
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 
 export default {
   name: 'app',

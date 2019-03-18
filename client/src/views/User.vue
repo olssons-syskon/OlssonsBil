@@ -24,7 +24,7 @@ export default {
 @import '../scss/main.scss';
 
 #user {
-  margin: 3rem 0;
+  margin-top: 20vh;
 
   .user {
     display: grid;

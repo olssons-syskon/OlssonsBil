@@ -26,7 +26,7 @@
 
             <button @click="deleteCar(car._id)">Delete</button>
             <button @click=" chosenCar = car; editCar(car._id)">Edit</button>
-  
+
           </tr>
         </tbody>
       </table>

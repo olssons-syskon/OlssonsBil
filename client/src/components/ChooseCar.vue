@@ -36,7 +36,7 @@ export default {
       let avaliable = this.$store.getters.getCars.filter((car) => {
         return car.booked.to.slice(0,4) <= sYear && car.booked.to.slice(5,7) <= sMonth && car.booked.to.slice(8,10) < sDay;
       })
-      return avaliable;
+      return avaliable.filter(car => car.bookable == true);
     },
     bookedCars() {
       let searchStartDate = this.$store.state.startDate;
