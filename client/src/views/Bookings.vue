@@ -14,7 +14,7 @@ export default {
 
   beforeMount() {
     this.$store.dispatch("retrieveBookings");
-    console.log(this.$store.state.bookings)
+    // console.log(this.$store.state.bookings)
   }
 }
 </script>
