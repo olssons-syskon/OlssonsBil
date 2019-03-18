@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      startDate: '2019-03-24',
+      startDate: '2019-03-10',
       endDate: '2019-04-05',
       noDate: false
     }
@@ -51,7 +51,6 @@ export default {
 <style lang="scss">
 
 @import '../scss/main.scss';
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 .search {
   h1 {

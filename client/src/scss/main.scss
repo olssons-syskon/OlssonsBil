@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 $background: LightSteelBlue;
 $text: 'Fira Sans';
@@ -29,10 +30,4 @@ $text: 'Fira Sans';
 
 h2,h3,h4,p {
   margin: 0;
-}
-
-@media screen and (max-width: 800px) {
-  :root {
-    background: url('../assets/background2.jpg')
-  }
 }

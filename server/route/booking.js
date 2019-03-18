@@ -28,6 +28,15 @@ module.exports.post = async (req, res) => {
 module.exports.delete = async (req, res) => {
     console.log(req.params.bookingId)
     try {
+        let booking = await Booking.findOne({ _id: req.params.bookingId })
+        console.log(booking)
+        await Cars.findOneAndUpdate({ name: booking.car }, {
+          booked: {
+            from: '2000-01-01',
+            to: '2000-01-01'
+          }
+        })
+
         await Booking.findOneAndDelete({ _id: req.params.bookingId })
     } catch(err) {
         console.error(err.stack)
