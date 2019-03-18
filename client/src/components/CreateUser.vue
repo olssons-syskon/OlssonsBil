@@ -36,21 +36,10 @@ export default {
            }
         }
     }
+  }
 
-}
 </script>
 
 <style lang='scss'>
-.create-user-inputs {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        input {
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            padding-left: 5px;
-        }
-}
 
 </style>

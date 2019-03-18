@@ -25,8 +25,8 @@ export default new Vuex.Store({
     usernameInUseMessage: 'Username',
     backToConfirm: false,
     backToBookings: false,
-    componentKey: 0
-    
+    // antal dagar i bokningen
+    days: 0
   },
 
   mutations: {
@@ -44,6 +44,11 @@ export default new Vuex.Store({
     },
     selectCar(state, car) {
       state.choosenCar = car;
+      // antal dagar bokningen är på
+      let start = Date.parse(state.startDate);
+      let end = Date.parse(state.endDate);
+      let timeDiff = end - start;
+      state.days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     },
     toggleRejected(state) {
       state.rejected = !state.rejected;
@@ -87,7 +92,7 @@ export default new Vuex.Store({
     },
     async editCar(ctx, data) {
       await axios.patch(`http://localhost:3000/cars/`, data);
-    
+
     },
     async cancelBooking(ctx, id) {
       try{

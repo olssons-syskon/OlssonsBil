@@ -1,9 +1,9 @@
 <template>
-  <div class="edit">
-    <h1>Update data about the car</h1>
+  <article class="edit">
+    <h1>Edit car</h1>
     <div class="form">
         <div>
-          <input name="name" type="text" placeholder="Name" v-model="eCar.name"> 
+          <input name="name" type="text" placeholder="Name" v-model="eCar.name">
         </div>
         <div>
           <input name="model" type="text" placeholder="Model" v-model="eCar.model">
@@ -18,15 +18,14 @@
           <input name="bookable" type="text" placeholder="If bookable" v-model="eCar.bookable">
         </div>
         <div>
-          <input name="booked from" type="text" placeholder="Is booked from" v-model="eCar.booked.from">
+          <input name="booked from" type="text" placeholder="Is booked from" v-model="eCar.booked.from.slice(0,10)">
         </div>
         <div>
-          <input name="booked to" type="text" placeholder="Is booked to" v-model="eCar.booked.to">
+          <input name="booked to" type="text" placeholder="Is booked to" v-model="eCar.booked.to.slice(0,10)">
         </div>
-        <button class="app_post_btn" @click="editCar(eCar)">DO IT!</button>
-        <!-- <input type="submit" value="Submit"> -->
+        <a class="app_post_btn btn" @click="editCar(eCar)">DO IT!</a>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -40,10 +39,6 @@ export default {
         price: "",
         color:"",
         bookable: true
-        /*    booked: {
-          from: '2000-01-01',
-          to: '2000-01-01'
-        } */
       }
     };
   },
@@ -72,7 +67,25 @@ export default {
   }
 };
 </script>
-<style type="text/css">
+
+<style lang="scss">
+
+@import '../scss/main.scss';
+
+.edit {
+  h1 {
+    color: #020;
+  }
+  input {
+    font-size: 1.2rem;
+    padding: .25rem;
+    margin: .25rem;
+    border: none;
+    background: $ghost;
+  }
+}
+
+/*
 h1 {
   color: brown;
 }
@@ -97,5 +110,5 @@ h1 {
   width: 520px;
   border: none;
   cursor: pointer;
-}
+}*/
 </style>

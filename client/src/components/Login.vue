@@ -1,16 +1,16 @@
 <template>
-    <main id="login">
-        <article>
-            <section class="login-inputs">
-                <h4>Username:</h4>
-                <input type="text" class="login-input-username" v-model="username" autofocus>
-                <h4>Password:</h4>
-                <input type="password" class="login-input-password" v-model="password" @keyup.enter="login">
-                <a href="#" class="btn" @click="login">Login</a>
-                <a href="#" class="btn" @click="openCreateUser()">New User</a>
-            </section>
-        </article>
-    </main>
+  <main id="login">
+    <article>
+      <h2>Sign in</h2>
+      <section class="login-inputs">
+        <h4>Username:</h4>
+        <input type="text" class="login-input-username" v-model="username" autofocus>
+        <h4>Password:</h4>
+        <input type="password" class="login-input-password" v-model="password" @keyup.enter="login">
+        <a href="#" class="btn" @click="login">Login</a>
+      </section>
+    </article>
+  </main>
 </template>
 
 <script>
@@ -39,9 +39,6 @@ export default {
                     this.$router.push('admin');
                 }
             }
-        },
-        openCreateUser() {
-            this.$router.push(`/create-user`)
         }
     },
     watch: {
@@ -69,28 +66,5 @@ export default {
 </script>
 
 <style lang='scss'>
-
-    h4 {
-        margin-top: .5rem;
-        text-shadow: 1px 1px #000;
-        color: #839eb9;
-    }
-    .login-inputs {
-        margin: 10rem 0 5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        input {
-            border-radius: 10px;
-            padding-left: 5px;
-        }
-    }
-    .btn {
-        width: 4rem;
-        height: 1.5rem;
-        background: #1b2530b9;
-        padding: 3px 0 0;
-    }
 
 </style>

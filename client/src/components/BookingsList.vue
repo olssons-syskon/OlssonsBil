@@ -7,13 +7,19 @@
         <span>to</span>
         {{ booking.toDate }}
       </div>
-      <h3>Car:</h3>
-      <div>{{ booking.car }}</div>
-      <h3>Cost:</h3>
-      <div>{{ booking.cost }}</div>
-      <h3>Name:</h3>
-      <div>{{ booking.booker }}</div>
-      <button class="cancel-booking" @click="id = booking._id; cancelBooking()">Cancel booking</button>
+
+      <div class="information">
+        <div>
+          <p>{{ booking.fromDate.slice(0,10) }}
+          <span>to</span>
+          {{ booking.toDate.slice(0,10) }}</p>
+        </div>
+        <p>{{ booking.car }}</p>
+        <p>{{ booking.cost }}</p>
+        <p>{{ booking.booker }}</p>
+      </div>
+
+      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking()">Cancel booking</button>
     </section>
   </article>
 </template>
@@ -51,7 +57,54 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss">
+
+@import '../scss/main.scss';
+
+.bookings-list {
+    max-width: 500px;
+    margin: auto;
+
+  .bookings-list-container {
+    background: $ghost;
+    display: flex;
+    margin: .5rem 0;
+    padding: .5rem;
+
+    .titles, .information {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        font-size: 1.2rem;
+        padding: .15rem;
+      }
+    }
+
+    .titles {
+      flex: 1;
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .information {
+      flex: 3;
+      margin-bottom: .5rem;
+    }
+
+    .btn {
+      transform: scale(.9);
+      height: 3rem;
+      align-self: flex-end;
+      margin: 0;
+    }
+  }
+}
+
+/*
 .bookings-list {
   background: rgba(0, 0, 0, 0.534);
 }
@@ -71,5 +124,5 @@ h3 {
 
 span {
   color: rgb(255, 0, 179);
-}
+}*/
 </style>

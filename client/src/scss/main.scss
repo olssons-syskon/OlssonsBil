@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 $background: LightSteelBlue;
+$ghost: rgba($color: White, $alpha: .8);
 $text: 'Fira Sans';
 
 %center {
@@ -10,15 +12,17 @@ $text: 'Fira Sans';
 }
 
 :root {
-  background: url('../assets/background2.jpg') fixed;
+  background: Azure url('../assets/background.jpg') no-repeat top;
+  background-attachment: fixed;
   background-size: 100%;
 }
 
 .btn {
   text-decoration: none;
   display: inline-block;
+  font-size: 1rem;
   background: rgba($color: #010, $alpha: .8);
-  color: White;
+  color: WhiteSmoke;
   padding: 1rem;
   margin: 1rem;
   border: none;

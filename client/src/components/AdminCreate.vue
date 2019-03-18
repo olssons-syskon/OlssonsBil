@@ -1,18 +1,20 @@
 <template>
   <article class="add-cars">
-    <h3>Name:</h3>
-    <input type="text" v-model="car.name">
-    <h3>Model:</h3>
-    <input type="text" v-model="car.model">
-    <h3>Color:</h3>
-    <input type="text" v-model="car.color">
-    <h3>Info:</h3>
-    <input type="text" v-model="car.info">
-    <h3>Image:</h3>
-    <input type="text" v-model="car.img">
-    <h3>Price:</h3>
-    <input type="text" v-model.number="car.price">
-    <button @click="createCar">Add</button>
+    <section class="add-car">
+      <p>Name:</p>
+      <input type="text" v-model="car.name">
+      <p>Model:</p>
+      <input type="text" v-model="car.model">
+      <p>Color:</p>
+      <input type="text" v-model="car.color">
+      <p>Info:</p>
+      <input type="text" v-model="car.info">
+      <p>Image:</p>
+      <input type="text" v-model="car.img">
+      <Price:</p>
+      <input type="text" v-model.number="car.price">
+    </section>
+    <a class="btn" @click="createCar">Add</a>
   </article>
 </template>
 
@@ -54,8 +56,33 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style land="css" scoped>
+<style lang="scss">
+
+@import '../scss/main.scss';
+
+.add-cars {
+
+  .add-car {
+    width: 300px;
+    margin: auto;
+
+    p {
+      color: $ghost;
+      font-family: 'Montserrat';
+      text-align: left;
+      margin-left: 1.8rem;
+    }
+    input {
+      font-size: 1.2rem;
+      padding: .25rem;
+      margin: .25rem;
+      border: none;
+      background: $ghost;
+    }
+  }
+}
+
+/*
 .add-cars {
   align-items: center;
   justify-content: center;
@@ -76,5 +103,5 @@ export default {
 }
 section {
   margin: 0.5rem;
-}
+} */
 </style>

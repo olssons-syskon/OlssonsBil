@@ -8,22 +8,22 @@
         <p>Car: </p>
         <p>Cost: </p>
         <p>Name: </p>
+        <input type="checkbox" @click="addInsurance()">
       </div>
 
       <div class="information">
         <p>{{ booking.fromDate }}</p>
         <p>{{ booking.toDate }}</p>
         <p>{{ booking.car }}</p>
-        <p>{{ booking.cost }}</p>
+        <p>{{ booking.cost }} SEK x {{ days }} days</p>
         <p>{{ booking.booker }}</p>
+        <p class="insText">Add insurance for the vehicle for the fine amount of {{ insurance.cost }} SEK.</p>
       </div>
     </section>
 
-    <div class="extras">
-      <h2 v-model="totalCost">Total cost: {{ totalCost }}</h2>
-    </div>
+    <h2>Total cost: {{ totalCost }} SEK</h2>
 
-    <button class="btn" @click="confirmBooking">Confirm Booking</button>
+    <button class="btn" @click="confirmBooking">Confirm booking</button>
   </article>
 </template>
 
@@ -38,13 +38,27 @@ export default {
         cost: this.$store.state.choosenCar.price,
         booker: this.$store.state.currentUser
       },
-      totalCost: this.$store.state.choosenCar.price
+      totalCost: this.$store.state.choosenCar.price * this.$store.state.days,
+      insurance: {
+        cost: 499,
+        choosen: false
+      },
+      days: this.$store.state.days
     }
   },
   methods: {
     async confirmBooking() {
+      this.booking.cost = this.totalCost;
       await this.$store.dispatch('createBooking', this.booking)
       this.$router.push(`/bookings`)
+    },
+    addInsurance() {
+      this.insurance.choosen = !this.insurance.choosen;
+      if(this.insurance.choosen) {
+        this.totalCost += this.insurance.cost;
+      } else if(!this.insurance.choosen) {
+        this.totalCost -= this.insurance.cost;
+      }
     }
   },
   beforeMount() {
@@ -89,23 +103,29 @@ export default {
       p {
         font-weight: bold;
       }
+      input {
+        transform: scale(2);
+        margin: 1rem 1.6rem;
+      }
     }
 
     .information {
       flex: 3;
+      margin-bottom: 2rem;
 
       input {
         font-size: 1.2rem;
         padding: .25rem;
         margin: .25rem;
         border: none;
-        background: rgba($color: WhiteSmoke, $alpha: .5);
+        background: $ghost;
+      }
+      .insText {
+        text-align: left;
+        font-size: .9rem;
+        color: White;
       }
     }
-  }
-
-  .extras {
-    margin-top: 3rem;
   }
 }
 
