@@ -1,11 +1,11 @@
 <template>
   <article class="bookings-list">
     <section class="bookings-list-container" v-for="booking in bookings" :key="booking._id">
-      <h3>Date:</h3>
-      <div>
-        {{ booking.fromDate }}
-        <span>to</span>
-        {{ booking.toDate }}
+      <div class="titles">
+         <p>Date:</p>
+         <p>Car:</p>
+         <p>Cost:</p>
+         <p>Name:</p>
       </div>
 
       <div class="information">
@@ -103,26 +103,4 @@ export default {
     }
   }
 }
-
-/*
-.bookings-list {
-  background: rgba(0, 0, 0, 0.534);
-}
-.bookings-list-container {
-  color: rgb(255, 0, 179);
-  border-bottom: 1px solid rgb(255, 0, 179);
-  padding: 1rem 0;
-}
-
-h3 {
-  margin: 0;
-}
-
-.bookings-list div {
-  color: #39ff14;
-}
-
-span {
-  color: rgb(255, 0, 179);
-}*/
 </style>

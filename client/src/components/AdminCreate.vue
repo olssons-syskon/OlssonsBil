@@ -78,30 +78,9 @@ export default {
       margin: .25rem;
       border: none;
       background: $ghost;
+      color: #020;
     }
   }
 }
 
-/*
-.add-cars {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  color: rgb(255, 0, 157);
-  padding: 1rem;
-}
-.add-cars h3 {
-  margin: 0;
-  justify-self: start;
-}
-.add-cars input {
-  border: 2px solid #000;
-  margin: 0.7rem;
-  border-radius: 10px;
-  padding-left: 5px;
-}
-section {
-  margin: 0.5rem;
-} */
 </style>
