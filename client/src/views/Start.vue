@@ -1,7 +1,7 @@
 <template>
   <main id="start">
     <search />
-    <Range />
+    <!-- <Range /> -->
     <router-view />
   </main>
 </template>
@@ -9,14 +9,14 @@
 <script>
 
 import Search from '../components/Search.vue';
-import Range from '../components/Range.vue';
+// import Range from '../components/Range.vue';
 
 
 export default {
   name: 'start',
   components: {
-    Search,
-    Range
+    Search
+    // Range
   }
 }
 </script>
