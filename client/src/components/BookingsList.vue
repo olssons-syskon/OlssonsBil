@@ -1,11 +1,11 @@
 <template>
   <article class="bookings-list">
-    <section class="bookings-list-container" v-for="booking in bookings" :key="booking._id">
-      <h3>Date:</h3>
-      <div>
-        {{ booking.fromDate }}
-        <span>to</span>
-        {{ booking.toDate }}
+    <section class="bookings-list-container" v-for="booking in filteredBookingsByUser" :key="booking._id">
+      <div class="titles">
+        <p>Date:</p>
+        <p>Car:</p>
+        <p>Cost:</p>
+        <p>Name:</p>
       </div>
 
       <div class="information">

@@ -1,9 +1,12 @@
 <template>
     <article class="create-user">
+        <h2>or sign up?</h2>
         <section class="create-user-inputs">
             <p v-show="usernameInUse">{{usernameInUseMessage}}</p>
-            <input placeholder="Username" v-model="newUserName"/>
-            <input type="password" placeholder="Password" v-model="newUserPassword" @keyup.enter="createUser()"/>
+            <h4>Username:</h4>
+            <input v-model="newUserName"/>
+            <h4>Password:</h4>
+            <input type="password" v-model="newUserPassword" @keyup.enter="createUser()"/>
             <a href="#" class="btn" @click="createUser">Create</a>
         </section>
     </article>
