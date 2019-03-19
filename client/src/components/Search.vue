@@ -27,6 +27,9 @@ export default {
     return {
       startDate: '2019-03-10',
       endDate: '2019-03-20',
+      //
+      dates: [],
+      //
       noDate: false,
       invalidDate: false
     }
@@ -44,6 +47,7 @@ export default {
         this.invalidDate = true;
       }
       else {
+        this.$store.dispatch('getAllDates', {from: from, to: to})
         this.$store.commit('changeStart', from)
         this.$store.commit('changeEnd', to)
         this.$router.push(`/choose-car`)

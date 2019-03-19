@@ -32,10 +32,7 @@ export default {
         img:
           "https://cdn5.vectorstock.com/i/1000x1000/76/94/car-vintage-car-icon-flat-style-vector-8087694.jpg",
         bookable: true,
-        booked: {
-          from: "2000-01-01",
-          to: "2000-01-01"
-        }
+        booked: []
       }
     };
   },

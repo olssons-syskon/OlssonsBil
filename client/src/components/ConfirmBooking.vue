@@ -12,8 +12,8 @@
       </div>
 
       <div class="information">
-        <p>{{ booking.fromDate }}</p>
-        <p>{{ booking.toDate }}</p>
+        <p>{{ booking.dates[0] }}</p>
+        <p>{{ booking.dates[days] }}</p>
         <p>{{ booking.car }}</p>
         <p>{{ booking.cost }} SEK x {{ days }} days</p>
         <p>{{ booking.booker }}</p>
@@ -32,8 +32,7 @@ export default {
   data() {
     return {
       booking: {
-        fromDate: this.$store.state.startDate,
-        toDate: this.$store.state.endDate,
+        dates: this.$store.state.dates,
         car: this.$store.state.choosenCar.name,
         cost: this.$store.state.choosenCar.price,
         booker: this.$store.state.currentUser

@@ -10,9 +10,10 @@
 
       <div class="information">
         <div>
-          <p>{{ booking.fromDate.slice(0,10) }}
+          <p>{{ booking.dates[0] }}
           <span>to</span>
-          {{ booking.toDate.slice(0,10) }}</p>
+          <!-- FIXA HÄR -->
+          {{ booking.dates[0] }}</p>
         </div>
         <p>{{ booking.car }}</p>
         <p>{{ booking.cost }}</p>

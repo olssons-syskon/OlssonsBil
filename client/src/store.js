@@ -26,9 +26,10 @@ export default new Vuex.Store({
     backToConfirm: false,
     backToBookings: false,
     // antal dagar i bokningen
-    days: 0
+    days: 0,
+    // alla dagar i bokningen
+    dates: []
   },
-
   mutations: {
     setBookings(state, bookings) {
       state.bookings = bookings;
@@ -61,9 +62,44 @@ export default new Vuex.Store({
     },
     setItems(state, items) {
       state.items = items
-    }
+    },
+    setAllDates(state, dates) {
+      state.dates = dates;
+    },
   },
   actions: {
+    ///
+    async getAllDates(ctx, date) {
+      Date.prototype.addDays = function(days) {
+        var dat = new Date(this.valueOf())
+        dat.setDate(dat.getDate() + days);
+        return dat;
+      }
+
+      function getDates(startDate, stopDate) {
+         var dateArray = new Array();
+         var currentDate = startDate;
+         while (currentDate <= stopDate) {
+           dateArray.push(currentDate)
+           currentDate = currentDate.addDays(1);
+         }
+         return dateArray;
+       }
+
+      let allDates = [];
+      var dateArray = getDates(new Date(date.from), (new Date(date.to)));
+      for (var i = 0; i < dateArray.length; i ++ ) {
+        let m = dateArray[i].getMonth() + 1;
+        let month = m;
+        if (m < 10) {
+          month = "0" + m.toString();
+        }
+        let date = dateArray[i].getFullYear().toString() + "-" + month + "-" + dateArray[i].getDate().toString()
+        allDates.push(date)
+      }
+      ctx.commit("setAllDates", allDates)
+      ///
+    },
     async createCar(ctx, car) {
       await axios.post("http://localhost:3000/cars", car);
     },

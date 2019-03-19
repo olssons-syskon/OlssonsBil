@@ -10,10 +10,7 @@ let carsSchema = new Schema({
     info: String,
     img: String,
     bookable: Boolean,
-    booked: {
-      from: Date,
-      to: Date
-    }
+    booked: Array
 });
 
 let Cars = mongoose.model('cars', carsSchema);
