@@ -14,22 +14,21 @@
 </template>
 
 <script>
-
-import DatePick from 'vue-date-pick';
-import 'vue-date-pick/dist/vueDatePick.css';
+import DatePick from "vue-date-pick";
+import "vue-date-pick/dist/vueDatePick.css";
 
 export default {
-  name: 'search',
+  name: "search",
   components: {
     DatePick
   },
   data() {
     return {
-      startDate: '2019-03-10',
-      endDate: '2019-03-20',
+      startDate: "2019-03-10",
+      endDate: "2019-03-20",
       noDate: false,
       invalidDate: false
-    }
+    };
   },
   methods: {
     hideError() {
@@ -37,27 +36,44 @@ export default {
       this.invalidDate = false;
     },
     async searchCars(from, to) {
-      if(from == '' || to == '') {
+      if (from == "" || to == "") {
         this.noDate = true;
-      }
-      else if(from > to || from == to) {
+      } else if (from > to || from == to) {
         this.invalidDate = true;
+      } else {
+        await this.$store.dispatch("retrieveCars");
+        this.$store.commit("changeStart", from);
+        this.$store.commit("changeEnd", to);
+        this.$router.push(`/choose-car`);
       }
-      else {
-        await this.$store.dispatch('retrieveCars')
-        this.$store.commit('changeStart', from)
-        this.$store.commit('changeEnd', to)
-        this.$router.push(`/choose-car`)
-      }
+    },
+    setDate() {
+    let year = new Date().getUTCFullYear();
+    let month = new Date().getUTCMonth() + 1;
+    let day = new Date().getUTCDate();
+    if (month < 10 && day < 10) {
+      this.startDate = year + "-" + "0" + month + "-" + "0" + day;
+      this.endDate = year + "-" + "0" + month + "-" + "0" + day;
+    } else if (month >= 10 && day < 10) {
+      this.startDate = year + "-" + month + "-" + "0" + day;
+      this.endDate = year + "-" + month + "-" + "0" + day;
+    } else if (month < 10 && day >= 10) {
+      this.startDate = year + "-" + "0" + month + "-" + day;
+      this.endDate = year + "-" + "0" + month + "-" + day;
+    } else {
+      this.startDate = year + "-" + month + "-" + day;
+      this.endDate = year + "-" + month + "-" + day;
     }
+    }
+  },
+  beforeMount() {
+    this.setDate()
   }
-}
-
+};
 </script>
 
 <style lang="scss">
-
-@import '../scss/main.scss';
+@import "../scss/main.scss";
 
 .search {
   h1 {
@@ -77,7 +93,7 @@ export default {
     .vdpComponent {
       input {
         width: 5.5rem;
-        padding: .8rem;
+        padding: 0.8rem;
         font-family: Montserrat;
         font-weight: bold;
         font-size: 1rem;
@@ -94,5 +110,4 @@ export default {
     margin: 0;
   }
 }
-
 </style>
