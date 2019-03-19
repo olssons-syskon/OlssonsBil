@@ -36,7 +36,7 @@ export default {
       this.noDate = false;
       this.invalidDate = false;
     },
-    searchCars(from, to) {
+    async searchCars(from, to) {
       if(from == '' || to == '') {
         this.noDate = true;
       }
@@ -44,6 +44,7 @@ export default {
         this.invalidDate = true;
       }
       else {
+        await this.$store.dispatch('retrieveCars')
         this.$store.commit('changeStart', from)
         this.$store.commit('changeEnd', to)
         this.$router.push(`/choose-car`)

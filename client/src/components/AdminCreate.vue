@@ -1,5 +1,5 @@
 <template>
-  <article class="add-cars">
+  <article class="add-cars-admin">
     <section class="add-car">
       <p>Name:</p>
       <input type="text" v-model="car.name">
@@ -13,8 +13,16 @@
       <input type="text" v-model="car.img">
       <p>Price:</p>
       <input type="text" v-model.number="car.price">
+      <a class="btn" @click="createCar">Add car</a>
     </section>
-    <a class="btn" @click="createCar">Add</a>
+    <section class="create-admin">
+      <p v-show="usernameInUse">{{usernameInUseMessage}}</p>
+      <p>Username:</p>
+      <input v-model="newAdminName">
+      <p>Password:</p>
+      <input type="password" v-model="newAdminPassword" @keyup.enter="createAdmin()">
+      <a href="#" class="btn" @click="createAdmin">Create admin</a>
+    </section>
   </article>
 </template>
 
@@ -36,51 +44,77 @@ export default {
           from: "2000-01-01",
           to: "2000-01-01"
         }
-      }
+      },
+      newAdminName: "",
+      newAdminPassword: "",
+      usernameInUse: false
     };
   },
   methods: {
-    createCar() {
-      this.$store.dispatch("createCar", this.car);
-      this.$store.dispatch("retrieveCars");
-      this.$store.dispatch("retrieveCars");
+    async createCar() {
+      await this.$store.dispatch("createCar", this.car);
       this.$router.push("/Admin");
-      this.$store.dispatch("retrieveCars");
+      await this.$store.dispatch("retrieveCars");
+      this.car.name = "";
+      this.car.model = "";
+      this.car.color = "";
+      this.car.price = "";
+      this.car.info = "";
+    },
+    async createAdmin() {
+      await this.$store.dispatch("createUser", {
+        username: this.newAdminName.toLowerCase(),
+        password: this.newAdminPassword,
+        role: "admin"
+      });
+      if (this.$store.state.nameNotInUse == false) {
+        this.usernameInUse = true;
+      } else {
+        this.newAdminName = "";
+        this.newAdminPassword = "";
+      }
     }
   },
   computed: {
     cars() {
       return this.$store.getters.getCars;
+    },
+    usernameInUseMessage() {
+      return this.$store.state.usernameInUseMessage;
     }
   }
 };
 </script>
 
 <style lang="scss">
+@import "../scss/main.scss";
 
-@import '../scss/main.scss';
+.add-cars-admin {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
 
-.add-cars {
-
-  .add-car {
+  .add-car,
+  .create-admin {
     width: 300px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 
     p {
       color: $ghost;
-      font-family: 'Montserrat';
+      font-family: "Montserrat";
       text-align: left;
       margin-left: 1.8rem;
     }
     input {
       font-size: 1.2rem;
-      padding: .25rem;
-      margin: .25rem;
+      padding: 0.25rem;
+      margin: 0.25rem;
       border: none;
       background: $ghost;
       color: #020;
     }
   }
 }
-
 </style>
