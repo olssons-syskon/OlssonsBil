@@ -31,6 +31,7 @@ export default {
       let sYear = searchStartDate.slice(0,4);
       let sMonth = searchStartDate.slice(5,7);
       let sDay = searchStartDate.slice(8,10);
+      //
 
       // kollar om det sökta bokningsdatumet är "högre" än det bilen är bokad till
       let avaliable = this.$store.getters.getCars.filter((car) => {

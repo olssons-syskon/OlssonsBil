@@ -79,6 +79,13 @@ export default new Vuex.Store({
       await axios.patch(`http://localhost:3000/cars/`, data);
     
     },
+    async findCarFromRange(ctx, request){
+      console.log(request)
+      let cars = await axios.get('http://localhost:3000/cars/', {params:request} )
+      
+      ctx.commit("setCars", cars.data);
+    },
+
     async cancelBooking(ctx, id) {
       console.log(id);
       await axios.delete(`http://localhost:3000/booking/${id}`);

@@ -1,13 +1,47 @@
 let Cars = require("../models/cars");
 
-module.exports.get = async (req, res) => {
+//show all cars
+/* module.exports.get = async (req, res) => {
+    console.log(req.query)
+    console.log(req.query.value)
+
+
     try {
         res.status(200).send(await Cars.find({}));
     } catch (err) {
         res.status(500).send(err.stack);
     }
-};
 
+}; 
+ */
+
+
+module.exports.get = async (req, res) => {
+    if (req.query.value) {
+        console.log("You choosed range")
+        console.log(req.query.value)
+        try {
+            //res.status(200).send(await Cars.find({ price: { $gte: min, $lte: value } }).sort({ price: 1 }));
+            res.status(200).send(await Cars.find({ price: { $gte: 0, $lte: req.query.value } }).sort({ price: 1 }));
+
+        } catch (err) {
+            res.status(500).send(err.stack);
+        }
+    }
+    else {
+        try {
+            console.log("You choosed all cars")
+            console.log(req.query)
+
+            res.status(200).send(await Cars.find({}));
+        } catch (err) {
+            res.status(500).send(err.stack);
+        }
+    }
+
+};  
+
+//create a new car in db
 module.exports.post = async (req, res) => {
     try {
         res.status(200).send(await Cars.create(req.body));
@@ -48,3 +82,4 @@ module.exports.patch = async (req, res) => {
         res.status(500).send(err.stack)
     }
 }
+
