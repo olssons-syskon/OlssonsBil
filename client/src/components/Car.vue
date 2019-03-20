@@ -35,6 +35,7 @@ export default {
   box-sizing: border-box;
   padding: .5rem;
   margin-bottom: .5rem;
+  cursor: pointer;
 
   img {
     flex: 1;

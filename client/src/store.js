@@ -189,6 +189,12 @@ export default new Vuex.Store({
 
       return bookings.filter(booking => (new Date(booking.dates[booking.dates.length-1]).getUnixTime()).toFixed() < today )
     },
+    getBookingsByLastDate(state) {
+      let bookings = state.bookings;
+      let today = (Date.now()/1000).toFixed();
+
+      return bookings.filter(booking => (new Date(booking.dates[booking.dates.length-1]).getUnixTime()).toFixed() >= today)
+    },
     getCars(state) {
       return state.cars;
     },

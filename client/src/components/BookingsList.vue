@@ -2,7 +2,7 @@
   <article class="bookings-list">
     <section
       class="bookings-list-container"
-      v-for="booking in filteredBookingsByUser"
+      v-for="booking in getBookingsByUser"
       :key="booking._id"
     >
       <div class="titles">
@@ -23,9 +23,9 @@
         <p>{{ booking.car }}</p>
         <p>{{ booking.cost }}</p>
         <p>{{ booking.booker }}</p>
+      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking()">Cancel booking</button>
       </div>
 
-      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking()">Cancel booking</button>
     </section>
     <section
       class="bookings-list-container finished"
@@ -52,7 +52,6 @@
         <p>{{ booking.booker }}</p>
       </div>
 
-      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking()">Remove old booking</button>
     </section>
   </article>
 </template>
@@ -73,19 +72,14 @@ export default {
       return this.$store.state.todaysDate;
     },
     getBookingsByFinished() {
-      return this.$store.getters.getFinishedBookings
+      return this.$store.getters.getFinishedBookings.filter(booking => {
+        return booking.booker === this.$store.state.currentUser
+      })
     },
     getBookingsByUser() {
-      return this.$store.getters.getBookingsByUser
-    },
-    filteredBookingsByUser() {
-      return this.bookings.filter(booking => {
-        return (
-          booking.booker === this.$store.state.currentUser &&
-          booking.dates[booking.dates.length - 1].replace("-", "") >=
-            this.todaysDate.replace("-", "")
-        );
-      });
+      return this.$store.getters.getBookingsByLastDate.filter(booking => {
+        return booking.booker === this.$store.state.currentUser
+      })
     }
   },
   methods: {
@@ -130,7 +124,10 @@ export default {
       p {
         font-size: 1.2rem;
         padding: 0.15rem;
+        width: 100%;
+        text-align: left;
       }
+
     }
 
     .titles {
@@ -149,8 +146,8 @@ export default {
     .btn {
       transform: scale(0.9);
       height: 3rem;
-      align-self: flex-end;
       margin: 0;
+      align-self: flex-end;
     }
   }
   

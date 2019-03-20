@@ -3,8 +3,7 @@ let Cars = require("../models/cars");
 let auth = require('./auth');
 
 module.exports.get = async (req, res) => {
-
-  console.log(req.body)
+  
     try {
         res.status(200).send(await Booking.find({}))
     } catch (err) {
