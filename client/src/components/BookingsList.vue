@@ -123,7 +123,7 @@ export default {
       align-items: flex-start;
 
       p {
-        font-size: 1.2rem;
+        font-size: 1rem;
         padding: 0.15rem;
         width: 100%;
         text-align: left;
