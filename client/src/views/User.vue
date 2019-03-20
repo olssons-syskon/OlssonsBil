@@ -68,7 +68,13 @@ export default {
         padding: 1rem 3rem;
       }
     }
+    @media only screen and (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }
+
 
 </style>

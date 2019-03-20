@@ -61,8 +61,9 @@ export default {
     }
   },
   beforeMount() {
-    if(this.$store.state.currentUser == '') {
+    if(this.$store.state.currentUser == '' || this.$store.state.dates == '') {
       this.$store.state.backToConfirm = true
+      this.$store.state.backToBookings = false
       this.$router.push('user')
     }
   }

@@ -91,6 +91,7 @@ export default {
     this.$store.dispatch("retrieveBookings");
     if (this.$store.state.currentUser == "") {
       this.$store.state.backToBookings = true;
+      this.$store.state.backToConfirm = false
       this.$router.push("user");
     }
     console.log(this.todaysDate);
