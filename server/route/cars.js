@@ -69,12 +69,11 @@ module.exports.patch = async (req, res) => {
             name: req.body.name,
             model: req.body.model,
             price: req.body.price,
+            info: req.body.info,
             bookable: req.body.bookable,
-            booked:
-            {
-                from: req.body.booked.from,
-                to: req.body.booked.to
-            },
+            booked: [
+              req.body.booked
+            ],
             color: req.body.color
         },
             { new: true }));

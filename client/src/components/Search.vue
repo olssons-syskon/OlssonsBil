@@ -9,49 +9,78 @@
     </div>
     <a href="#" class="btn" @click="searchCars(startDate, endDate)">Find me a car!</a>
     <p class="errorMsg" v-show="noDate">I need a date. Please date me.</p>
+    <p class="errorMsg" v-show="invalidDate">Invalid dates.</p>
   </article>
 </template>
 
 <script>
-
-import DatePick from 'vue-date-pick';
-import 'vue-date-pick/dist/vueDatePick.css';
+import DatePick from "vue-date-pick";
+import "vue-date-pick/dist/vueDatePick.css";
 
 export default {
-  name: 'search',
+  name: "search",
   components: {
     DatePick
   },
   data() {
     return {
-      startDate: '2019-03-24',
-      endDate: '2019-04-05',
-      noDate: false
-    }
+      startDate: '2019-03-10',
+      endDate: '2019-03-20',
+      //
+      dates: [],
+      //
+      noDate: false,
+      invalidDate: false
+    };
   },
   methods: {
     hideError() {
       this.noDate = false;
+      this.invalidDate = false;
     },
-    searchCars(from, to) {
-      if(from == '' || to == '') {
+    async searchCars(from, to) {
+      if (from == "" || to == "") {
         this.noDate = true;
-      }
-      else {
+      } else if (from > to || from == to) {
+        this.invalidDate = true;
+      } else {
+        this.$store.dispatch('getAllDates', {from: from, to: to})
         this.$store.commit('changeStart', from)
         this.$store.commit('changeEnd', to)
         this.$router.push(`/choose-car`)
       }
+    },
+    setDate() {
+    let year = new Date().getUTCFullYear();
+    let month = new Date().getUTCMonth() + 1;
+    let day = new Date().getUTCDate();
+    if (month < 10 && day < 10) {
+      this.startDate = year + "-" + "0" + month + "-" + "0" + day;
+      this.endDate = year + "-" + "0" + month + "-" + "0" + day;
+      this.$store.commit('setTodaysDate', this.startDate);
+    } else if (month >= 10 && day < 10) {
+      this.startDate = year + "-" + month + "-" + "0" + day;
+      this.endDate = year + "-" + month + "-" + "0" + day;
+      this.$store.commit('setTodaysDate', this.startDate);
+    } else if (month < 10 && day >= 10) {
+      this.startDate = year + "-" + "0" + month + "-" + day;
+      this.endDate = year + "-" + "0" + month + "-" + day;
+      this.$store.commit('setTodaysDate', this.startDate); 
+    } else {
+      this.startDate = year + "-" + month + "-" + day;
+      this.endDate = year + "-" + month + "-" + day;
+      this.$store.commit('setTodaysDate', this.startDate); 
     }
+    }
+  },
+  beforeMount() {
+    this.setDate()
   }
-}
-
+};
 </script>
 
 <style lang="scss">
-
-@import '../scss/main.scss';
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import "../scss/main.scss";
 
 .search {
   h1 {
@@ -71,7 +100,7 @@ export default {
     .vdpComponent {
       input {
         width: 5.5rem;
-        padding: .8rem;
+        padding: 0.8rem;
         font-family: Montserrat;
         font-weight: bold;
         font-size: 1rem;
@@ -88,5 +117,4 @@ export default {
     margin: 0;
   }
 }
-
 </style>

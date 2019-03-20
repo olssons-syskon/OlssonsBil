@@ -32,24 +32,21 @@ export default new Router({
       name: 'bookings',
       component: () => import('./views/Bookings.vue')
     },
-  
+
     {
       path: '/edit/:id',
       name: 'edit',
       component: () => import('./views/Edit.vue')
     },
-    
     {
       path: '/user',
       name: 'user',
       component: () => import('./views/User.vue'),
-      children: [
-        {
-          path: '/create-user',
-          name: 'createUser',
-          component: () => import('./components/CreateUser.vue')
-        }
-      ]
+    },
+    {
+      path: '/create-user',
+      name: 'createUser',
+      component: () => import('./components/CreateUser.vue')
     }
   ]
 })

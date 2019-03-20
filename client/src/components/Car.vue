@@ -31,9 +31,11 @@ export default {
   width: 50vw;
   display: flex;
   align-items: flex-start;
-  background: White;
+  background: rgba($color: White, $alpha: .8);
   box-sizing: border-box;
   padding: .5rem;
+  margin-bottom: .5rem;
+  cursor: pointer;
 
   img {
     flex: 1;
@@ -47,8 +49,13 @@ export default {
     align-items: flex-start;
     margin: .5rem .5rem .5rem 1rem;
 
-    h2, h3 {
+    h2 {
       margin: 0;
+    }
+    h3 {
+      margin: 0;
+      font-weight: normal;
+      font-size: 1rem;
     }
     .info {
       font-style: italic;
@@ -69,6 +76,12 @@ export default {
 
   @media screen and (max-width: 480px) {
     width: 80vw;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
   }
 }
 

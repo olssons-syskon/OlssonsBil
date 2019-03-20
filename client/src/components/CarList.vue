@@ -9,9 +9,8 @@
             <td>Color</td>
             <td>Price (kr/day)</td>
             <td>Bookable</td>
-         <!--    <td>Booked from</td>
-            <td>Booked to</td> -->
-
+            <!--    <td>Booked from</td>
+            <td>Booked to</td>-->
           </tr>
         </thead>
         <tbody>
@@ -21,12 +20,10 @@
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
             <td>{{ car.bookable }}</td>
-        <!--     <td>{{ car.booked.from }}</td>
-            <td>{{ car.booked.to }}</td> -->
-
+            <!--     <td>{{ car.booked.from }}</td>
+            <td>{{ car.booked.to }}</td>-->
             <button @click="deleteCar(car._id)">Delete</button>
             <button @click=" chosenCar = car; editCar(car._id)">Edit</button>
-  
           </tr>
         </tbody>
       </table>
@@ -44,9 +41,9 @@ export default {
         color: "",
         price: "",
         bookable: true,
-        booked: false,
+        booked: false
       },
-        chosenCar:''
+      chosenCar: ""
     };
   },
 
@@ -65,12 +62,11 @@ export default {
       this.$store.dispatch("deleteCar", id);
       this.$store.dispatch("retrieveCars");
       this.$router.push("/Admin");
-            this.$store.dispatch("retrieveCars");
-
+      this.$store.dispatch("retrieveCars");
     },
     editCar(id) {
       console.log(id);
-      this.$store.commit('setChosenCar', this.chosenCar)
+      this.$store.commit("setChosenCar", this.chosenCar);
       this.$router.push(`/edit/${id}`);
       //<router-link to="/confirm">Admin</router-link>
     }
@@ -86,8 +82,12 @@ export default {
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.534);
-  color: rgb(255, 0, 157);
-  padding: 1rem;
+  font-weight: 900;
+  color: #000;
+  padding: 1rem 0;
+}
+
+table {
 }
 
 thead tr {
@@ -95,10 +95,10 @@ thead tr {
 }
 
 tbody td {
-  margin: 10px;
-  padding: 10px;
   color: wheat;
   justify-self: start;
   font-weight: bold;
+  border-bottom: 1px solid #000;
+  padding: .8rem 0;
 }
 </style>
