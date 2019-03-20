@@ -6,7 +6,7 @@
         <car v-for="car in availableCars" :key="car._id" :car="car" />
       </div>
     </div>
-    <div class="booked-cars" v-if="bookedCars.length > 0">
+    <div class="booked-cars">
       <h2 class="title">Booked cars</h2>
       <div>
         <car v-for="car in bookedCars" :key="car._id" :car="car" />
@@ -26,28 +26,53 @@ export default {
   },
   computed: {
     availableCars() {
-      // datumet man söker på
-      let searchStartDate = this.$store.state.startDate;
-      let sYear = searchStartDate.slice(0,4);
-      let sMonth = searchStartDate.slice(5,7);
-      let sDay = searchStartDate.slice(8,10);
+      let cars = this.$store.getters.getCars;
+      let search = this.$store.state.dates;
+      let occupied = [];
 
-      // kollar om det sökta bokningsdatumet är "högre" än det bilen är bokad till
-      let avaliable = this.$store.getters.getCars.filter((car) => {
-        return car.booked.to.slice(0,4) <= sYear && car.booked.to.slice(5,7) <= sMonth && car.booked.to.slice(8,10) < sDay;
+      cars.forEach(car => {
+        search.forEach(date => {
+          car.booked.forEach(booked => {
+            if(booked == date){
+              console.log()
+              if(!occupied.includes(car))
+              occupied.push(car);
+            }
+          })
+        })
       })
-      return avaliable.filter(car => car.bookable == true);
+
+      console.log(occupied)
+
+      let avaliable = cars;
+      console.log("Ein " + avaliable.length)
+      for (var i = 0; i < occupied.length; i++) {
+        console.log("Zwei " + avaliable.length)
+        var n = avaliable.indexOf(occupied[i])
+        console.log("Drei " + avaliable.length)
+        avaliable.splice(n, 1)
+        console.log('-----------------')
+        console.log(avaliable)
+      }
+      console.log("Vier " + avaliable.length)
+      return avaliable;
     },
     bookedCars() {
-      let searchStartDate = this.$store.state.startDate;
-      let sYear = searchStartDate.slice(0,4);
-      let sMonth = searchStartDate.slice(5,7);
-      let sDay = searchStartDate.slice(8,10);
+      let cars = this.$store.getters.getCars;
+      let search = this.$store.state.dates;
+      let occupied = [];
 
-      // kollar om det sökta bokningsdatumet är "högre" än det bilen är bokad till
-      return this.$store.getters.getCars.filter((car) => {
-        return car.booked.to.slice(0,4) >= sYear && car.booked.to.slice(5,7) >= sMonth && car.booked.to.slice(8,10) <= sDay;
+      cars.forEach(car => {
+        search.forEach(date => {
+          car.booked.forEach(booked => {
+            if(booked == date){
+              if(!occupied.includes(car))
+              occupied.push(car);
+            }
+          })
+        })
       })
+      return occupied;
     }
   }
 }

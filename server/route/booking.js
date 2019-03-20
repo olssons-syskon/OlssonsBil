@@ -16,10 +16,7 @@ module.exports.post = async (req, res) => {
     try {
       ///
         await Cars.findOneAndUpdate({ name: req.body.car}, {
-          booked: {
-            from: req.body.fromDate,
-            to: req.body.toDate
-          }
+          booked: req.body.dates
         })
       ///
         res.status(200).send(await Booking.create(req.body));
@@ -36,10 +33,7 @@ module.exports.delete = async (req, res) => {
         let booking = await Booking.findOne({ _id: req.params.bookingId })
         console.log(booking)
         await Cars.findOneAndUpdate({ name: booking.car }, {
-          booked: {
-            from: '2000-01-01',
-            to: '2000-01-01'
-          }
+          booked: []
         })
 
         await Booking.findOneAndDelete({ _id: req.params.bookingId })

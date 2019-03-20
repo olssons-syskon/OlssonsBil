@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let bookingSchema = new Schema({
-    dates: {},
+    dates: Array,
     car: String,
     cost: Number,
     booker: String

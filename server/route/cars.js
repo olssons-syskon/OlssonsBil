@@ -36,11 +36,9 @@ module.exports.patch = async (req, res) => {
             model: req.body.model,
             price: req.body.price,
             bookable: req.body.bookable,
-            booked:
-            {
-                from: req.body.booked.from,
-                to: req.body.booked.to
-            },
+            booked: [
+              req.body.booked
+            ],
             color: req.body.color
         },
             { new: true }));

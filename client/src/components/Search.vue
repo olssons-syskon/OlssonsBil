@@ -24,8 +24,11 @@ export default {
   },
   data() {
     return {
-      startDate: "2019-03-10",
-      endDate: "2019-03-20",
+      startDate: '2019-03-10',
+      endDate: '2019-03-20',
+      //
+      dates: [],
+      //
       noDate: false,
       invalidDate: false
     };
@@ -41,10 +44,10 @@ export default {
       } else if (from > to || from == to) {
         this.invalidDate = true;
       } else {
-        await this.$store.dispatch("retrieveCars");
-        this.$store.commit("changeStart", from);
-        this.$store.commit("changeEnd", to);
-        this.$router.push(`/choose-car`);
+        this.$store.dispatch('getAllDates', {from: from, to: to})
+        this.$store.commit('changeStart', from)
+        this.$store.commit('changeEnd', to)
+        this.$router.push(`/choose-car`)
       }
     },
     setDate() {
