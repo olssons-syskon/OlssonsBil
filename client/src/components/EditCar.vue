@@ -37,13 +37,13 @@ export default {
         model: "",
         color: "",
         price: "",
-        color:"",
+        color: "",
         bookable: true
       }
     };
   },
   beforeMount() {
-    console.log(this.eCar)
+    console.log(this.eCar);
   },
   computed: {
     eCar() {
@@ -67,7 +67,6 @@ export default {
   }
 };
 </script>
-
 <style lang="scss">
 
 @import '../scss/main.scss';

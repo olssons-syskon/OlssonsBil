@@ -26,6 +26,7 @@ export default {
   },
   computed: {
     availableCars() {
+
       let cars = this.$store.getters.getCars;
       let search = this.$store.state.dates;
       let occupied = [];
