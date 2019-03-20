@@ -6,8 +6,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    authOptions: {
+      params: {
+        headers: {
+          authorization: `Bearer ${sessionStorage.getItem("authentic")}`
+        }
+      }
+    },
     bookings: [],
     cars: [],
+    todaysDate: '',
     startDate: '',
     endDate: '',
     choosenCar: {},
@@ -61,6 +69,9 @@ export default new Vuex.Store({
     },
     setItems(state, items) {
       state.items = items
+    },
+    setTodaysDate(state, date) {
+      state.todaysDate = date
     }
   },
   actions: {
@@ -77,7 +88,7 @@ export default new Vuex.Store({
       }
     },
     async createBooking(ctx, booking) {
-      await axios.post("http://localhost:3000/booking/", booking);
+      await axios.post("http://localhost:3000/booking/", booking, ctx.state.authOptions);
     },
     async retrieveBookings(ctx) {
       let bookings = await axios.get("http://localhost:3000/booking");
@@ -105,6 +116,7 @@ export default new Vuex.Store({
     async login(ctx, loginData) {
       try {
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData);
+        console.log(token)
         sessionStorage.setItem("authentic", token.data.authToken);
 
         await ctx.commit("setCurrentUser", token.data.username);
@@ -135,6 +147,12 @@ export default new Vuex.Store({
     getBookings(state) {
       return state.bookings;
     },
+    getFinishedBookings(state){
+      let bookings = state.bookings;
+      let today = (Date.now()/1000).toFixed();
+
+      return bookings.filter(booking => (new Date(booking.dates[booking.dates.length-1]).getUnixTime()).toFixed() < today )
+    },
     getCars(state) {
       return state.cars;
     },
@@ -147,5 +165,8 @@ export default new Vuex.Store({
     getItems(state){
       return state.items;
     },
+    getTodaysDate(state) {
+      return state.todaysDate;
+    }
   }
 });

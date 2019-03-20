@@ -54,15 +54,19 @@ export default {
     if (month < 10 && day < 10) {
       this.startDate = year + "-" + "0" + month + "-" + "0" + day;
       this.endDate = year + "-" + "0" + month + "-" + "0" + day;
+      this.$store.commit('setTodaysDate', this.startDate);
     } else if (month >= 10 && day < 10) {
       this.startDate = year + "-" + month + "-" + "0" + day;
       this.endDate = year + "-" + month + "-" + "0" + day;
+      this.$store.commit('setTodaysDate', this.startDate);
     } else if (month < 10 && day >= 10) {
       this.startDate = year + "-" + "0" + month + "-" + day;
       this.endDate = year + "-" + "0" + month + "-" + day;
+      this.$store.commit('setTodaysDate', this.startDate); 
     } else {
       this.startDate = year + "-" + month + "-" + day;
       this.endDate = year + "-" + month + "-" + day;
+      this.$store.commit('setTodaysDate', this.startDate); 
     }
     }
   },

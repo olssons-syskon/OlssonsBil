@@ -30,12 +30,9 @@ export default {
                 await this.$store.dispatch('login', {username: this.username.toLowerCase(), password: this.password});
                 if(this.$store.state.backToConfirm == true) {
                     this.$router.push('confirm');
-                    console.log('1')
                 } else if(this.$store.state.backToBookings == true) {
-                    console.log('2')
                     this.$router.push('bookings');
                 } else {
-                    console.log('3')
                     this.$router.push('admin');
                 }
             }
