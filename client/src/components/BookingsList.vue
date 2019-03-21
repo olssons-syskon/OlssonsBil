@@ -27,6 +27,7 @@
       </div>
 
     </section>
+      <h4>Old bookings:</h4>
     <section
       class="bookings-list-container finished"
       v-for="booking in getBookingsByFinished"

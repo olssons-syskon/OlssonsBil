@@ -25,8 +25,32 @@
         <a href="#" class="btn" @click="createAdmin">Create admin</a>
       </section>
     </section>
-      <h4>Old bookings:</h4>
+    <h4>Bookings:</h4>
     <section class="old-bookings-list" v-for="booking in bookings" :key="booking._id">
+      <div class="titles">
+        <p>Date:</p>
+        <p>Car:</p>
+        <p>Cost:</p>
+        <p>Name:</p>
+      </div>
+
+      <div class="information">
+        <div>
+          <p>
+            {{ booking.dates[0] }}
+            <span>to</span>
+            {{ booking.dates[booking.dates.length-1] }}
+          </p>
+        </div>
+        <p>{{ booking.car }}</p>
+        <p>{{ booking.cost }}</p>
+        <p>{{ booking.booker }}</p>
+      </div>
+      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking()">Cancel booking</button>
+
+    </section>
+      <h4>Old bookings:</h4>
+    <section class="old-bookings-list finished" v-for="booking in finishedBookings" :key="booking._id">
       <div class="titles">
         <p>Date:</p>
         <p>Car:</p>
@@ -75,6 +99,9 @@ export default {
     };
   },
   methods: {
+    async cancelBooking() {
+      await this.$store.dispatch("cancelBooking", this.id);
+    },
     async createCar() {
       await this.$store.dispatch("createCar", this.car);
       this.$router.push("/Admin");
@@ -106,9 +133,13 @@ export default {
     usernameInUseMessage() {
       return this.$store.state.usernameInUseMessage;
     },
-    bookings() {
+    finishedBookings() {
       return this.$store.getters.getFinishedBookings;
+    },
+    bookings() {
+      return this.$store.getters.getBookingsByLastDate
     }
+
   }
 };
 </script>
@@ -148,15 +179,19 @@ export default {
         background: $ghost;
         color: #020;
         border: 1px solid #000;
+        width: auto;
       }
     }
   }
   .old-bookings-list {
+
+    &.finished {
+      opacity: 0.5;
+    }
     background: $ghost;
     display: flex;
     margin: 0.5rem 0;
     padding: 0.5rem;
-    opacity: 0.5;
 
     .titles,
     .information {
