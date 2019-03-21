@@ -24,6 +24,7 @@ export default new Vuex.Store({
       model: "test",
       color: "test",
       price: "test",
+      info: "test",
       bookable: true
     },
     currentUser: '',
