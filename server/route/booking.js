@@ -3,7 +3,7 @@ let Cars = require("../models/cars");
 let auth = require('./auth');
 
 module.exports.get = async (req, res) => {
-  
+
     try {
         res.status(200).send(await Booking.find({}))
     } catch (err) {
@@ -27,10 +27,10 @@ module.exports.post = async (req, res) => {
 module.exports.delete = async (req, res) => {
     try {
       // Om admin = ok
-        let booking = await Booking.findOne({ _id: req.params.bookingId })
+        /*let booking = await Booking.findOne({ _id: req.params.bookingId })
         await Cars.findOneAndUpdate({ name: booking.car }, {
           booked: []
-        })
+        })*/
 
         await Booking.findOneAndDelete({ _id: req.params.bookingId })
         res.status(200).send('Alles gut')

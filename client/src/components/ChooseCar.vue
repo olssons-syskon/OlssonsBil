@@ -43,19 +43,11 @@ export default {
         })
       })
 
-      console.log(occupied)
-
       let avaliable = cars;
-      console.log("Ein " + avaliable.length)
       for (var i = 0; i < occupied.length; i++) {
-        console.log("Zwei " + avaliable.length)
         var n = avaliable.indexOf(occupied[i])
-        console.log("Drei " + avaliable.length)
         avaliable.splice(n, 1)
-        console.log('-----------------')
-        console.log(avaliable)
       }
-      console.log("Vier " + avaliable.length)
       return avaliable;
     },
     bookedCars() {

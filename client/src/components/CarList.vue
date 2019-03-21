@@ -9,8 +9,6 @@
             <td>Color</td>
             <td>Price (kr/day)</td>
             <td>Bookable</td>
-            <!--    <td>Booked from</td>
-            <td>Booked to</td>-->
           </tr>
         </thead>
         <tbody>
@@ -20,8 +18,6 @@
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
             <td>{{ car.bookable }}</td>
-            <!--     <td>{{ car.booked.from }}</td>
-            <td>{{ car.booked.to }}</td>-->
             <a class="btn" @click="deleteCar(car._id)">Delete</a>
             <a class="btn" @click=" chosenCar = car; editCar(car._id)">Edit</a>
           </tr>
@@ -73,9 +69,10 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+
 @import '../scss/main.scss';
+
 .container {
   display: flex;
   justify-content: center;
