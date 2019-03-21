@@ -18,10 +18,10 @@
           <input name="bookable" type="text" placeholder="If bookable" v-model="eCar.bookable">
         </div>
         <div>
-          <input name="booked from" type="text" placeholder="Is booked from" v-model="eCar.booked.from.slice(0,10)">
+          <input name="booked from" type="text" placeholder="Is booked from" v-model="eCar.booked.from">
         </div>
         <div>
-          <input name="booked to" type="text" placeholder="Is booked to" v-model="eCar.booked.to.slice(0,10)">
+          <input name="booked to" type="text" placeholder="Is booked to" v-model="eCar.booked.to">
         </div>
         <a class="app_post_btn btn" @click="editCar(eCar)">DO IT!</a>
     </div>
@@ -47,6 +47,7 @@ export default {
   },
   computed: {
     eCar() {
+      console.log(this.$store.getters.getChosenCar)
       return this.$store.getters.getChosenCar;
       //return this.$route.params.data
     }

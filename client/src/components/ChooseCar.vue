@@ -34,7 +34,6 @@ export default {
         search.forEach(date => {
           car.booked.forEach(booked => {
             if(booked == date){
-              console.log()
               if(!occupied.includes(car))
               occupied.push(car);
             }
@@ -42,20 +41,14 @@ export default {
         })
       })
 
-      console.log(occupied)
+      console.log("Occ: " + occupied)
 
       let avaliable = cars;
-      console.log("Ein " + avaliable.length)
       for (var i = 0; i < occupied.length; i++) {
-        console.log("Zwei " + avaliable.length)
         var n = avaliable.indexOf(occupied[i])
-        console.log("Drei " + avaliable.length)
         avaliable.splice(n, 1)
-        console.log('-----------------')
-        console.log(avaliable)
       }
-      console.log("Vier " + avaliable.length)
-      return avaliable;
+      return avaliable.filter(car => car.bookable == true);
     },
     bookedCars() {
       let cars = this.$store.getters.getCars;

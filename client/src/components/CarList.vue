@@ -7,10 +7,8 @@
             <td>Name</td>
             <td>Model</td>
             <td>Color</td>
-            <td>Price (kr/day)</td>
+            <td>Price/day</td>
             <td>Bookable</td>
-            <!--    <td>Booked from</td>
-            <td>Booked to</td>-->
           </tr>
         </thead>
         <tbody>
@@ -20,10 +18,8 @@
             <td>{{ car.color }}</td>
             <td>{{ car.price }}</td>
             <td>{{ car.bookable }}</td>
-            <!--     <td>{{ car.booked.from }}</td>
-            <td>{{ car.booked.to }}</td>-->
-            <button @click="deleteCar(car._id)">Delete</button>
-            <button @click=" chosenCar = car; editCar(car._id)">Edit</button>
+            <a class="btn" @click="deleteCar(car._id)">Delete</a>
+            <a class="btn" @click=" chosenCar = car; editCar(car._id)">Edit</a>
           </tr>
         </tbody>
       </table>
@@ -74,8 +70,48 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
+
+@import '../scss/main.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+
+  .cars {
+
+    table {
+      text-align: left;
+      margin: .5rem;
+      padding: .5rem;
+
+      thead {
+        td {
+          font-family: 'Montserrat';
+          font-weight: bold;
+        }
+      }
+
+      td {
+        padding: .15rem .5rem;
+      }
+      a {
+        font-size: .8rem;
+        padding: .5rem;
+        margin: .25rem .15rem;
+      }
+
+      tbody {
+        background: $ghost;
+        padding: .5rem;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+
+/*
 .container {
   align-items: center;
   justify-content: center;
@@ -100,5 +136,5 @@ tbody td {
   font-weight: bold;
   border-bottom: 1px solid #000;
   padding: .8rem 0;
-}
+}*/
 </style>
