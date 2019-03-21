@@ -23,7 +23,7 @@
         <p>{{ booking.car }}</p>
         <p>{{ booking.cost }}</p>
         <p>{{ booking.booker }}</p>
-      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking()">Cancel booking</button>
+      <button class="cancel-booking btn" @click="id = booking._id; cancelBooking(booking)">Cancel booking</button>
       </div>
 
     </section>
@@ -84,7 +84,7 @@ export default {
     }
   },
   methods: {
-    async cancelBooking() {
+    async cancelBooking(booking) {
       await this.$store.dispatch("cancelBooking", this.id);
     }
   },
@@ -151,6 +151,6 @@ export default {
       align-self: flex-end;
     }
   }
-  
+
 }
 </style>
