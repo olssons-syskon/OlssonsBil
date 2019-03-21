@@ -14,6 +14,7 @@ mongoose.connect(`mongodb+srv://olssonsbil:${PASSWORD}@olssonsbilcluster-vkzez.m
 });
 
 let cars = require('./route/cars');
+
 let booking = require('./route/booking');
 let auth = require('./route/auth');
 let user = require('./route/users');
@@ -44,6 +45,7 @@ app.route('/cars')
 
 app.route('/cars/:carId')
 .delete(cars.delete)
+
 
 app.route('/booking')
 .get(booking.get)

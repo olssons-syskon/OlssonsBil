@@ -13,7 +13,7 @@ export default new Router({
         {
           path: '/choose-car',
           name: 'chooseCar',
-          component: () => import('./components/ChooseCar.vue')
+          component: () => import('./views/Choose.vue')
         }
       ]
     },

@@ -22,8 +22,8 @@
             <td>{{ car.bookable }}</td>
             <!--     <td>{{ car.booked.from }}</td>
             <td>{{ car.booked.to }}</td>-->
-            <button @click="deleteCar(car._id)">Delete</button>
-            <button @click=" chosenCar = car; editCar(car._id)">Edit</button>
+            <a class="btn" @click="deleteCar(car._id)">Delete</a>
+            <a class="btn" @click=" chosenCar = car; editCar(car._id)">Edit</a>
           </tr>
         </tbody>
       </table>
@@ -68,37 +68,42 @@ export default {
       console.log(id);
       this.$store.commit("setChosenCar", this.chosenCar);
       this.$router.push(`/edit/${id}`);
-      //<router-link to="/confirm">Admin</router-link>
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
+@import '../scss/main.scss';
 .container {
-  align-items: center;
-  justify-content: center;
   display: flex;
-  flex-direction: column;
-  background: rgba(0, 0, 0, 0.534);
-  font-weight: 900;
-  color: #000;
-  padding: 1rem 0;
-}
-
-table {
-}
-
-thead tr {
-  font-weight: bold;
-}
-
-tbody td {
-  color: wheat;
-  justify-self: start;
-  font-weight: bold;
-  border-bottom: 1px solid #000;
-  padding: .8rem 0;
+  justify-content: center;
+  .cars {
+    table {
+      text-align: left;
+      margin: .5rem;
+      padding: .5rem;
+      thead {
+        td {
+          font-family: 'Montserrat';
+          font-weight: bold;
+        }
+      }
+      td {
+        padding: .15rem .5rem;
+      }
+      a {
+        font-size: .8rem;
+        padding: .5rem;
+        margin: .25rem .15rem;
+      }
+      tbody {
+        background: $ghost;
+        padding: .5rem;
+        border-radius: 3px;
+      }
+    }
+  }
 }
 </style>

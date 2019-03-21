@@ -24,6 +24,7 @@ export default new Vuex.Store({
       model: "test",
       color: "test",
       price: "test",
+      info: "test",
       bookable: true
     },
     currentUser: '',
@@ -141,6 +142,12 @@ export default new Vuex.Store({
       await axios.patch(`http://localhost:3000/cars/`, data);
 
     },
+    async findCarFromRange(ctx, request){
+      let cars = await axios.get('http://localhost:3000/cars/', {params:request} )
+      
+      ctx.commit("setCars", cars.data);
+    },
+
     async cancelBooking(ctx, id) {
       try{
         await axios.delete(`http://localhost:3000/booking/${id}`, ctx.state.authOptions);
@@ -152,7 +159,6 @@ export default new Vuex.Store({
     async login(ctx, loginData) {
       try {
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData);
-        console.log(token)
         sessionStorage.setItem("authentic", token.data.authToken);
 
         await ctx.commit("setCurrentUser", token.data.username);

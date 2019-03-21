@@ -28,7 +28,6 @@ module.exports.delete = async (req, res) => {
     try {
       // Om admin = ok
         let booking = await Booking.findOne({ _id: req.params.bookingId })
-        console.log(booking)
         await Cars.findOneAndUpdate({ name: booking.car }, {
           booked: []
         })

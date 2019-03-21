@@ -8,8 +8,6 @@ module.exports.post = async (req, res) => {
 
     try {
 
-        console.log(await User.findOne({username: req.body.username}))
-
         if(await User.findOne({username: req.body.username})) {
             res.status(200).send({notInUse: false, message: 'Username already in use'});
         } else {
