@@ -30,8 +30,6 @@ module.exports.get = async (req, res) => {
     }
     else {
         try {
-            console.log("You choosed all cars")
-            console.log(req.query)
 
             res.status(200).send(await Cars.find({}));
         } catch (err) {

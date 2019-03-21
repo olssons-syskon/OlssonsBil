@@ -1,6 +1,6 @@
 <template>
   <article class="search">
-    <h1>Olssons biluthyrning</h1>
+    <h1>Olsson's Car Rental</h1>
     <h2>When?</h2>
     <div class="calendars" @click="hideError">
       <date-pick v-model="startDate"></date-pick>

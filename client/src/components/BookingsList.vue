@@ -94,7 +94,6 @@ export default {
       this.$store.state.backToConfirm = false
       this.$router.push("user");
     }
-    console.log(this.todaysDate);
   }
 };
 </script>

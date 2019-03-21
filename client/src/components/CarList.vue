@@ -22,8 +22,8 @@
             <td>{{ car.bookable }}</td>
             <!--     <td>{{ car.booked.from }}</td>
             <td>{{ car.booked.to }}</td>-->
-            <button @click="deleteCar(car._id)">Delete</button>
-            <button @click=" chosenCar = car; editCar(car._id)">Edit</button>
+            <a class="btn" @click="deleteCar(car._id)">Delete</a>
+            <a class="btn" @click=" chosenCar = car; editCar(car._id)">Edit</a>
           </tr>
         </tbody>
       </table>
@@ -68,7 +68,6 @@ export default {
       console.log(id);
       this.$store.commit("setChosenCar", this.chosenCar);
       this.$router.push(`/edit/${id}`);
-      //<router-link to="/confirm">Admin</router-link>
     }
   }
 };
@@ -107,5 +106,4 @@ export default {
     }
   }
 }
-
 </style>

@@ -143,7 +143,6 @@ export default new Vuex.Store({
 
     },
     async findCarFromRange(ctx, request){
-      console.log(request)
       let cars = await axios.get('http://localhost:3000/cars/', {params:request} )
       
       ctx.commit("setCars", cars.data);
@@ -160,7 +159,6 @@ export default new Vuex.Store({
     async login(ctx, loginData) {
       try {
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData);
-        console.log(token)
         sessionStorage.setItem("authentic", token.data.authToken);
 
         await ctx.commit("setCurrentUser", token.data.username);

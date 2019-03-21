@@ -77,6 +77,7 @@ export default {
 .confirm-booking {
   margin: 2rem;
   font-family: $text;
+  background: $ghost;
 
   h1 {
     margin-bottom: 1rem;
@@ -94,7 +95,7 @@ export default {
       align-items: flex-start;
 
       p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: .5rem;
       }
     }
@@ -123,7 +124,6 @@ export default {
       .insText {
         text-align: left;
         font-size: .9rem;
-        color: White;
       }
     }
   }

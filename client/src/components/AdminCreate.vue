@@ -134,7 +134,7 @@ export default {
         color: $ghost;
         font-family: "Montserrat";
         text-align: left;
-        margin-left: 1.8rem;
+        margin-left: .25rem;
         text-shadow: 1px 1px #fff;
         font-weight: 900;
         color:#000;

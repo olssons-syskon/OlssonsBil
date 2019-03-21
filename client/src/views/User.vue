@@ -1,33 +1,31 @@
 <template>
   <main id="user">
     <section class="user">
-      <Login />
-      <CreateUser />
+      <Login/>
+      <CreateUser/>
     </section>
   </main>
 </template>
 
 <script>
-import Login from '../components/Login.vue'
-import CreateUser from '../components/CreateUser.vue'
+import Login from "../components/Login.vue";
+import CreateUser from "../components/CreateUser.vue";
 export default {
-    name: 'user',
-    components: {
-        Login,
-        CreateUser
-    },
-    beforeMount() {
-        if(this.$store.state.currentUser != '') {
-            this.$router.push('/')
-        }
+  name: "user",
+  components: {
+    Login,
+    CreateUser
+  },
+  beforeMount() {
+    if (this.$store.state.currentUser != "") {
+      this.$router.push("/");
     }
-
-}
+  }
+};
 </script>
 
 <style lang="scss">
-
-@import '../scss/main.scss';
+@import "../scss/main.scss";
 
 #user {
   margin-top: 20vh;
@@ -43,25 +41,27 @@ export default {
       margin: 1rem;
     }
 
-    .login-inputs, .create-user-inputs {
+    .login-inputs,
+    .create-user-inputs {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       box-sizing: border-box;
-      padding: .5rem;
+      padding: 0.5rem;
 
       h4 {
-        font-family: 'Montserrat';
-        margin-left: .25rem;
+        font-family: "Montserrat";
+        margin-left: 0.25rem;
         color: #010;
       }
       input {
         font-size: 1.2rem;
-        padding: .25rem;
-        margin: .25rem;
+        padding: 0.25rem;
+        margin: 0.25rem;
         border: none;
         border-radius: 3px;
-        background: rgba($color: WhiteSmoke, $alpha: .8);
+        width: auto;
+        background: rgba($color: WhiteSmoke, $alpha: 0.8);
       }
       .btn {
         align-self: center;
@@ -75,6 +75,4 @@ export default {
     }
   }
 }
-
-
 </style>
