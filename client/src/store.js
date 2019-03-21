@@ -151,7 +151,7 @@ export default new Vuex.Store({
 
     async cancelBooking(ctx, id) {
       try{
-        await axios.delete(`http://localhost:3000/booking/${id}`);
+        await axios.delete(`http://localhost:3000/booking/${id}`, ctx.state.authOptions);
         ctx.dispatch('retrieveBookings')
       } catch(err) {
         console.error(err)

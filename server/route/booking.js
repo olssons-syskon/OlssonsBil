@@ -27,8 +27,6 @@ module.exports.post = async (req, res) => {
 module.exports.delete = async (req, res) => {
     try {
       // Om admin = ok
-      if(await auth.isAdmin(req.headers.authorization)) {
-
         let booking = await Booking.findOne({ _id: req.params.bookingId })
         console.log(booking)
         await Cars.findOneAndUpdate({ name: booking.car }, {
@@ -37,10 +35,6 @@ module.exports.delete = async (req, res) => {
 
         await Booking.findOneAndDelete({ _id: req.params.bookingId })
         res.status(200).send('Alles gut')
-      } else {
-        res.status(500).send('You are not an admin.')
-      }
-
     } catch(err) {
         console.error(err.stack)
     }
