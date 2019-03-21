@@ -14,8 +14,10 @@ module.exports.get = async (req, res) => {
 module.exports.post = async (req, res) => {
     try {
       ///
+      console.log(req.body)
         await Cars.findOneAndUpdate({ name: req.body.car}, {
-          booked: req.body.dates
+          booked: req.body.dates,
+          bookable: false
         })
       ///
         res.status(200).send(await Booking.create(req.body));
@@ -27,10 +29,11 @@ module.exports.post = async (req, res) => {
 module.exports.delete = async (req, res) => {
     try {
       // Om admin = ok
-        /*let booking = await Booking.findOne({ _id: req.params.bookingId })
+        let booking = await Booking.findOne({ _id: req.params.bookingId })
         await Cars.findOneAndUpdate({ name: booking.car }, {
-          booked: []
-        })*/
+          booked: [],
+          bookable: true
+        })
 
         await Booking.findOneAndDelete({ _id: req.params.bookingId })
         res.status(200).send('Alles gut')

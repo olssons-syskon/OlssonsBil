@@ -47,11 +47,6 @@ export default {
   },
   methods: {
     async confirmBooking() {
-      let booked = this.$store.state.choosenCar.booked;
-      for (var i = 0; i < booked.length; i++) {
-        this.$store.state.dates.push(booked[i])
-      }
-      //console.log(this.booking.dates)
       this.booking.cost = this.totalCost;
       await this.$store.dispatch('createBooking', this.booking)
       this.$router.push(`/bookings`)

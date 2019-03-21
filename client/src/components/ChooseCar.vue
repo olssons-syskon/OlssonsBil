@@ -48,7 +48,7 @@ export default {
         var n = avaliable.indexOf(occupied[i])
         avaliable.splice(n, 1)
       }
-      return avaliable;
+      return avaliable.filter(car => car.bookable == true);
     },
     bookedCars() {
       let cars = this.$store.getters.getCars;
