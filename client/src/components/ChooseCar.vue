@@ -53,21 +53,10 @@ export default {
       })
     },
     bookedCars() {
-      let cars = this.$store.getters.getCars;
-      let search = this.$store.state.dates;
-      let occupied = [];
 
-      cars.forEach(car => {
-        search.forEach(date => {
-          car.booked.forEach(booked => {
-            if(booked == date){
-              if(!occupied.includes(car))
-              occupied.push(car);
-            }
-          })
-        })
-      })
-      return occupied;
+      let cars = this.$store.getters.getCars
+
+      return cars.filter(car => car.bookable === false)
     }
   }
 }
