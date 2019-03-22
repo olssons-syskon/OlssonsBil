@@ -84,7 +84,7 @@ export default {
     }
   },
   methods: {
-    async cancelBooking(booking) {
+    async cancelBooking() {
       await this.$store.dispatch("cancelBooking", this.id);
     }
   },
