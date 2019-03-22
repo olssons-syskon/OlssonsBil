@@ -13,13 +13,11 @@ module.exports.get = async (req, res) => {
 
 module.exports.post = async (req, res) => {
     try {
-      ///
       console.log(req.body)
         await Cars.findOneAndUpdate({ name: req.body.car}, {
           booked: req.body.dates,
           bookable: false
         })
-      ///
         res.status(200).send(await Booking.create(req.body));
     } catch (err) {
         res.status(500).send(err.stack)

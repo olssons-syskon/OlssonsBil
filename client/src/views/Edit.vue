@@ -13,7 +13,7 @@ export default {
    EditCar
   },
     beforeMount() {
-    console.log("gfgfg"+this.$store.state.eChosenCar)
+    console.log(this.$store.state.eChosenCar)
   }
 }
 </script>
